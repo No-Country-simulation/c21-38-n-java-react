@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Header } from "./components/Header"
 import { Mascotas } from "./components/Mascotas"
 import { Huellita } from "./components/Huellita"
+import { SobreNosotros } from "./components/SobreNosotros"
 // import { mascotas } from "./store/mascotas"
 
 
@@ -54,7 +55,11 @@ function App() {
   return (
     <>
       <Header/>
-      <main className="w-[100%] h-auto flex justify-center  ">
+
+      <main className="w-full h-auto flex-col  justify-center bg-[#F8F9FA] ">
+
+        <SobreNosotros/>
+
         <Mascotas pets={pets} />
 
         
@@ -89,9 +94,19 @@ function App() {
             marT={120}
             rot={25}
           />
+
+          <Huellita 
+            width={7}
+            marR={250}
+            marL={120}
+            marT={180}
+            rot={56}
+          />
         
       </main>
-      <footer></footer>
+      <footer>
+
+      </footer>
     </>
   )
 }
