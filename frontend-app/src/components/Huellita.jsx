@@ -1,16 +1,14 @@
-
-export const Huellita = ({ width, marR, marL, marT ,rot }) => {
+export const Huellita = ({ width, marR, marT ,rot }) => {
     return (
         <img 
-            src="/public/images/Huella.svg" 
+            src="/images/Huella.svg" 
             style={{
                 width: `${width}vh`,
-                marginRight: `${marR}vh`,
-                marginLeft: `${marL}vh`,
+                right: `${marR}vw`,
                 marginTop: `${marT}vh`,
                 transform: `rotate(${rot}deg)`,
             }} 
-            className="absolute" 
+            className="absolute z-0 md:z-30" 
         />
     );
   };

@@ -1,12 +1,31 @@
 import {Nav} from "./Nav.jsx"
 import '../index.css'
+import { useEffect, useState } from "react"
 
 export const Header=()=>{
+
+    const [scrollPorcent, setScrollPorcent] = useState(0)
+
+    const handleScroll = () => {
+        const scrollTop = document.documentElement.scrollTop
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+        const scrollPorcent = (scrollTop / scrollHeight) * 100
+        console.log(scrollPorcent)
+        setScrollPorcent(scrollPorcent)
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
     return(
         <header className="flex-col justify-center items-center"> 
 
             <div className="flex-col justify-center items-center relative">
-                <div className="w-full flex justify-center absolute z-10 ">
+                <div className={`w-full flex justify-center z-50 transition-all duration-200 ${scrollPorcent > 1.1 ? "fixed mt-0" : "mt-7 absolute"}`}>
                     <Nav></Nav>
                 </div>
                 <img src="/images/HeaderIMG.jpg" className="w-full h-[550px] object-cover custom-brightness" />

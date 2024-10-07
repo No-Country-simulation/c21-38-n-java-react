@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Header } from "./components/Header"
 import { Mascotas } from "./components/Mascotas"
-import { Huellita } from "./components/Huellita"
+// import { Huellita } from "./components/Huellita"
 import { SobreNosotros } from "./components/SobreNosotros"
 // import { mascotas } from "./store/mascotas"
 
@@ -63,15 +63,9 @@ function App() {
         <Mascotas pets={pets} />
 
         
-          <Huellita 
-            width={4}
-            marR={126}
-            marL={0}
-            marT={20}
-            rot={45}
-          />
 
-          <Huellita 
+
+          {/* <Huellita 
             width={6}
             marR={10}
             marL={120}
@@ -101,7 +95,7 @@ function App() {
             marL={120}
             marT={180}
             rot={56}
-          />
+          /> */}
         
       </main>
       <footer>
