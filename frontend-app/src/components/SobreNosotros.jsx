@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -17,20 +17,20 @@ export const SobreNosotros=()=>{
 
     return(
 <section className={`bg-[#1F485C] flex w-full h-[403px] items-center transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-    <div className='pl-52 flex relative'>
+    <div className='pl-6 md:pl-52 flex relative'>
         <div className='flex-shrink-0'>
             <img 
                 src="/public/images/chica-y-gato.jpg" 
                 style={{ transform: 'rotate(-4deg)' }}
-                className='w-60 h-72 rounded-3xl object-cover border-8 border-[#F39C12]' 
+                className='w-48 h-56 md:w-60 md:h-72 rounded-3xl object-cover border-8 border-[#F39C12]' 
             />
         </div>
 
-        <div className='flex-shrink-0 absolute w-32' style={{ top: '5%', left: '90%' }}> {/* Ajusta según sea necesario */}
+        <div className='flex-shrink-0 absolute w-24 md:w-32' style={{ top: '5%', left: '90%' }}> {/* Ajusta según sea necesario */}
             <img 
                 src="/public/images/PerroPrimerPlano.jpg" 
                 style={{ transform: 'rotate(5deg)' }}
-                className='h-40 rounded-3xl object-cover border-4 border-[#F8F9FA]  ' 
+                className='h-32 md:h-40 rounded-3xl object-cover border-4 border-[#F8F9FA]  ' 
             />
         </div>
     </div>
