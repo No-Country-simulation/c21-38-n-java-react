@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import '../index.css'
 
 
 
@@ -16,17 +17,17 @@ export const SobreNosotros=()=>{
     }, []);
 
     return(
-<section className={`bg-[#1F485C] flex w-full h-[403px] items-center transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-    <div className='pl-6 md:pl-52 flex relative'>
-        <div className='flex-shrink-0'>
+<section className={`bg-[#1F485C] flex w-full h-[403px] items-center justify-end transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className='pl-6 md:pl-52 flex relative justify-end'>
+        <div className='flex-shrink-0 mr-48 bounce '>
             <img 
                 src="/public/images/chica-y-gato.jpg" 
                 style={{ transform: 'rotate(-4deg)' }}
-                className='w-48 h-56 md:w-60 md:h-72 rounded-3xl object-cover border-8 border-[#F39C12]' 
+                className='w-48 h-56 md:w-60 md:h-72 rounded-3xl object-cover border-8 border-[#F39C12] ' 
             />
         </div>
 
-        <div className='flex-shrink-0 absolute w-24 md:w-32' style={{ top: '5%', left: '90%' }}> {/* Ajusta según sea necesario */}
+        <div className='flex-shrink-0 absolute w-24 md:w-32 bounce2' style={{ top: '25%', left: '20%' }}> {/* Ajusta según sea necesario */}
             <img 
                 src="/public/images/PerroPrimerPlano.jpg" 
                 style={{ transform: 'rotate(5deg)' }}
@@ -35,8 +36,11 @@ export const SobreNosotros=()=>{
         </div>
     </div>
 
-    <div>
-        {/* Aquí puedes agregar más contenido si es necesario */}
+    <div className='flex absolute lg:w-[55.5%] lg:mr-[34.9%] lg:text-3xl text-Newhite text-justify' style={{ lineHeight: '1.8' }}>
+        Somos una familia dedicada a crear 
+        conexiones únicas entre personas y mascotas. Queremos brindarle una nueva oportunidad 
+        a vidas que están en búsqueda de un hogar. Creemos que cada una
+        merece un lugar donde ser feliz, una adopción a la vez.
     </div>
 </section>
     )

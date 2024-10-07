@@ -61,41 +61,6 @@ function App() {
         <SobreNosotros/>
 
         <Mascotas pets={pets} />
-
-        
-
-
-          {/* <Huellita 
-            width={6}
-            marR={10}
-            marL={120}
-            marT={60}
-            rot={-63}
-          />
-
-          <Huellita 
-            width={8}
-            marR={126}
-            marL={0}
-            marT={90}
-            rot={-10}
-          />
-
-          <Huellita 
-            width={4}
-            marR={10}
-            marL={120}
-            marT={120}
-            rot={25}
-          />
-
-          <Huellita 
-            width={7}
-            marR={250}
-            marL={120}
-            marT={180}
-            rot={56}
-          /> */}
         
       </main>
       <footer>
