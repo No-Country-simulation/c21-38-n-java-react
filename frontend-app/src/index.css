@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .image {
+  background-image: url('/images/HeaderIMG.jpg');
+  height: 344px;
+  width: 100%;
+  filter: brightness(0.5);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+} */
+.custom-brightness {
+    filter: brightness(30%); /* Ajusta este valor según sea necesario */
+}
+
+.shadow-inset {
+  box-shadow: inset 0px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.color-azul{
+  color: #1F485C;
+}
+
+.color-naranja{
+  color:#F39C12;
+}
+
+.color-blanco{
+  color: #F8F9FA ;
+}
