@@ -1,4 +1,4 @@
-package com.encuentratumascota.shelter.model;
+package com.encuentratumascota.shelter.enums;
 
 public enum Breed {
 

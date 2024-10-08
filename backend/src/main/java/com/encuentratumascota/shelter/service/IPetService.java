@@ -1,9 +1,9 @@
 package com.encuentratumascota.shelter.service;
 
-import com.encuentratumascota.shelter.model.Pet;
-
 import java.util.List;
 import java.util.Optional;
+
+import com.encuentratumascota.shelter.model.Pet;
 
 public interface IPetService {
 

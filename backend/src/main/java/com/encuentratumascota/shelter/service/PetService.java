@@ -16,7 +16,7 @@ public class PetService implements IPetService {
 
     @Override
     public List<Pet> findPets() {
-        return this.petRepository.findAll();
+        return this.petRepository.findByActiveStatus(true);
     }
 
     @Override

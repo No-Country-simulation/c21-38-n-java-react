@@ -9,6 +9,9 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
+import com.encuentratumascota.shelter.enums.Breed;
+import com.encuentratumascota.shelter.enums.Specie;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,7 +45,7 @@ public class Pet {
     @NotNull(message = "La edad no puede ser nula")
     @Min(value = 1, message = "La edad debe ser mayor o igual a 1")
     @Max(value = 999, message = "La edad debe ser menor o igual a 999")
-    private Integer edge;
+    private Integer age;
 
     @NotBlank(message = "El género no puede estar vacío")
     @NotNull(message = "El género no puede ser nulo")
