@@ -29,7 +29,7 @@ export const Header=()=>{
                     <Nav></Nav>
                 </div>
                 <img src="/images/HeaderIMG.jpg" className="w-full h-[550px] object-cover custom-brightness" />
-                <p className="absolute w-[64%] bottom-10 right-20 text-xl text-justify lg:text-3xl md:text-2xl transition-all duration-500 lg:w-[33.8%] text-[#F8F9FA] mr-[106px]"
+                <p className="absolute w-[64%] bottom-[72px] right-20 text-xl text-justify lg:text-3xl md:text-2xl transition-all duration-500 lg:w-[33.8%] text-[#F8F9FA] mr-[106px]"
                 style={{ lineHeight: '1.5' }}
                 >
                 Cada año, miles de mascotas buscan un lugar al que llamar hogar, y en ese proceso, nos enseñan <br/> 

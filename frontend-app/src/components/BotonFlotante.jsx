@@ -30,7 +30,7 @@ export const BotonFlotante = () => {
             style={{
                 width: size.width,
                 height: size.height,
-                transition: 'width 0.7s ease, height 0.7s ease, margin 0.7s ease'
+                transition: 'width 0.8s ease, height 0.8s ease, margin 0.8s ease'
             }}
         >
             <div>
