@@ -36,11 +36,12 @@ export const SobreNosotros=()=>{
         </div>
     </div>
 
-    <div className='flex absolute lg:w-[55.5%] lg:mr-[34.9%] lg:text-3xl text-Newhite text-justify' style={{ lineHeight: '1.8' }}>
-        Somos una familia dedicada a crear 
+    <div className='flex-col absolute lg:w-[55.5%] lg:mr-[34.9%]  text-Newhite text-justify' style={{ lineHeight: '1.8' }}>
+        <strong><h2 className='lg:text-4xl mb-5 text-orange '>Sobre Nosotros</h2></strong>
+        <p className='lg:text-3xl'>Somos una familia dedicada a crear 
         conexiones únicas entre personas y mascotas. Queremos brindarle una nueva oportunidad 
         a vidas que están en búsqueda de un hogar. Creemos que cada una
-        merece un lugar donde ser feliz, una adopción a la vez.
+        merece un lugar donde ser feliz, una adopción a la vez.</p>
     </div>
 </section>
     )
