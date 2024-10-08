@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import { Header } from "./components/Header"
 import { Mascotas } from "./components/Mascotas"
-// import { Huellita } from "./components/Huellita"
 import { SobreNosotros } from "./components/SobreNosotros"
-// import { mascotas } from "./store/mascotas"
+import { Footer } from "./components/Footer"
+
+
+import { BotonFlotante } from "./components/BotonFlotante"
+
 
 
 
@@ -64,8 +67,12 @@ function App() {
         
       </main>
       <footer>
-
+        <Footer/>
       </footer>
+
+      <div className="">
+        <BotonFlotante/>
+      </div>
     </>
   )
 }
