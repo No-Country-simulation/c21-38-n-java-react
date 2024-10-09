@@ -10,7 +10,7 @@ export const mascotas = [
     healthStatus:
       "Se encuentra en buen estado de salud. Todas las vacunas al día.",
     imageProfile:
-      "https://cdn.pixabay.com/photo/2016/02/19/10/00/golden-retriever-1200325_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_960_720.jpg",
     size: "G",
     activeStatus: true,
   },
@@ -41,7 +41,7 @@ export const mascotas = [
     gender: "H",
     healthStatus: "Esterilizada y vacunada.",
     imageProfile:
-      "https://cdn.pixabay.com/photo/2017/11/09/21/41/siamese-2935038_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_960_720.jpg",
     size: "P",
     activeStatus: true,
   },
@@ -71,7 +71,7 @@ export const mascotas = [
     healthStatus:
       "Se encuentra en buen estado de salud. Todas las vacunas al día.",
     imageProfile:
-      "https://cdn.pixabay.com/photo/2016/02/19/10/00/golden-retriever-1200325_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_960_720.jpg",
     size: "G",
     activeStatus: true,
   },
@@ -102,7 +102,7 @@ export const mascotas = [
     gender: "H",
     healthStatus: "Esterilizada y vacunada.",
     imageProfile:
-      "https://cdn.pixabay.com/photo/2017/11/09/21/41/siamese-2935038_960_720.jpg",
+      "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_960_720.jpg",
     size: "P",
     activeStatus: true,
   },
