@@ -26,7 +26,7 @@ export const BotonFlotante = () => {
 
     return (
         <div
-            className={`text-7xl flex fixed mr-6 mb-8 justify-between bottom-4 right-4 p-5 shadow-xl z-50 bg-opacity-5 backdrop-blur-3xl transition-all border-2 border-orange ${isExpanded ? 'rounded-3xl' : 'rounded-full'}`}
+            className={`text-7xl flex fixed mr-6 mb-8 justify-between bottom-4 right-4 p-5 shadow-xl z-50 bg-opacity-5 backdrop-blur-3xl transition-all border-2 border-orange  ${isExpanded ? 'rounded-3xl' : 'rounded-full'}`}
             style={{
                 width: size.width,
                 height: size.height,
