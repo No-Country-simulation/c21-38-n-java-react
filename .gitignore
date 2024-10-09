@@ -33,4 +33,4 @@ build/
 .vscode/
 .env
 .idea/
-.mvn/
+.project
