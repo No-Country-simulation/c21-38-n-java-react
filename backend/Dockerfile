@@ -1,5 +1,5 @@
-# Usa una imagen base de OpenJDK 17
-FROM openjdk:17-jdk-slim
+# Etapa 1: Construcción
+FROM maven:3.8.5-openjdk-17-slim AS build
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
@@ -9,11 +9,13 @@ COPY pom.xml .
 COPY src ./src
 
 # Ejecuta Maven para compilar la aplicación y crear el JAR
-RUN apt-get update && apt-get install -y maven \
-    && mvn clean package -DskipTests
+RUN mvn clean package -DskipTests
+
+# Etapa 2: Crear la imagen final
+FROM openjdk:17-jdk-slim
 
 # Copia el JAR construido al contenedor
-COPY target/*.jar app.jar
+COPY --from=build /app/target/shelter-0.0.1-SNAPSHOT.jar app.jar
 
 # Expone el puerto en el que la aplicación escuchará
 EXPOSE 8080
