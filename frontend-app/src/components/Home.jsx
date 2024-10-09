@@ -1,4 +1,3 @@
-import App from "../App"
 import { Mascotas } from "./Mascotas"
 import { SobreNosotros } from "./SobreNosotros"
 
@@ -36,10 +35,10 @@ export const Home=()=>{
     ]
 
     return(
-        <App>
+        <section>
             <SobreNosotros/>
 
             <Mascotas pets={mascotas} />
-        </App>
+        </section>
     )
 }
