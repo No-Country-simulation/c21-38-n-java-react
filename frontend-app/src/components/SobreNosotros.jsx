@@ -21,7 +21,7 @@ export const SobreNosotros=()=>{
     <div className='pl-6 md:pl-52 flex relative justify-end'>
         <div className='flex-shrink-0 mr-48 bounce '>
             <img 
-                src="/public/images/chica-y-gato.jpg" 
+                src="/images/chica-y-gato.jpg" 
                 style={{ transform: 'rotate(-4deg)' }}
                 className='w-48 h-56 md:w-60 md:h-72 rounded-3xl object-cover border-8 border-[#F39C12] ' 
             />
@@ -29,7 +29,7 @@ export const SobreNosotros=()=>{
 
         <div className='flex-shrink-0 absolute w-24 md:w-32 bounce2' style={{ top: '25%', left: '20%' }}> {/* Ajusta según sea necesario */}
             <img 
-                src="/public/images/PerroPrimerPlano.jpg" 
+                src="/images/PerroPrimerPlano.jpg" 
                 style={{ transform: 'rotate(5deg)' }}
                 className='h-32 md:h-40 rounded-3xl object-cover border-4 border-[#F8F9FA]  ' 
             />
