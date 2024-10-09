@@ -6,8 +6,8 @@ import { RedesSociales } from "./RedesSociales";
 export const Footer=()=>{
     return(
         <footer>
-            <div className="flex justify-center bg-orange h-52 mt-6 ">
-                <img src="/images/perroSinFondo.png" alt="" className="w-64 object-cover absolute" style={{ top: '288.9vh' }} />
+            <div className="flex justify-center bg-orange h-52 mt-6 relative ">
+                <img src="/images/perroSinFondo.png" alt="" className="w-64 object-cover absolute bottom-0" />
                 <img src="/public/images/forma1.png" alt="" className="w-96 object-cover mr-[70%]"/>
                 <img src="/public/images/forma2.png" alt="" className="w-96 object-cover ml-[-20%]"/>
                 <div className="absolute text-3xl flex items-center justify-center pt-4  h-48  mr-[30%] text-Blue">

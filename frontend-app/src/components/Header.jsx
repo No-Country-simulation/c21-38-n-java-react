@@ -23,13 +23,12 @@ export const Header=()=>{
 
     return(
         <header className="flex-col justify-center items-center"> 
-
             <div className="flex-col justify-center items-center relative">
                 <div className={`w-full flex justify-center z-50 transition-all duration-200 ${scrollPorcent > 1.1 ? "fixed mt-0" : "mt-7 absolute"}`}>
                     <Nav></Nav>
                 </div>
                 <img src="/images/HeaderIMG.jpg" className="w-full h-[550px] object-cover custom-brightness" />
-                <p className="absolute w-[64%] bottom-10 right-20 text-xl text-justify lg:text-3xl md:text-2xl transition-all duration-500 lg:w-[33.8%] text-[#F8F9FA] mr-[106px]"
+                <p className="absolute w-[64%] bottom-[95.5px] right-20 text-xl text-justify lg:text-3xl md:text-2xl transition-all duration-500 lg:w-[33.8%] text-[#F8F9FA] mr-[106px]"
                 style={{ lineHeight: '1.5' }}
                 >
                 Cada año, miles de mascotas buscan un lugar al que llamar hogar, y en ese proceso, nos enseñan <br/> 
