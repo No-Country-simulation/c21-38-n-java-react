@@ -4,23 +4,20 @@ import com.encuentratumascota.shelter.enums.Breed;
 import com.encuentratumascota.shelter.enums.Specie;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.repository.IPetRepository;
-import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class DataInitializer {
 
 
 
-    @Autowired
+    //@Autowired
     private IPetRepository petRepository; // Inyección del repositorio
 
 
-    @PostConstruct
+    //@PostConstruct
     void addData() {
     	
     
