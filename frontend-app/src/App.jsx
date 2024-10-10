@@ -9,7 +9,7 @@ function App() {
     <>
       <Header/>
 
-      <main className="w-full h-auto flex-col  justify-center bg-[#F8F9FA] ">
+      <main className="w-full h-auto flex-col  justify-center">
         <Outlet />
       </main>
       <footer>

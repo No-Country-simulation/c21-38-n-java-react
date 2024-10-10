@@ -22,6 +22,9 @@ export default {
           '40%': { transform: 'translateY(-30px)' },
           '60%': { transform: 'translateY(-15px)' },
         }
+      },
+      brightness: {
+        '80': 'brightness(0.8)'
       }
       
     },

@@ -10,7 +10,6 @@ export const Header=()=>{
         const scrollTop = document.documentElement.scrollTop
         const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
         const scrollPorcent = (scrollTop / scrollHeight) * 100
-        console.log(scrollPorcent)
         setScrollPorcent(scrollPorcent)
     }
 
