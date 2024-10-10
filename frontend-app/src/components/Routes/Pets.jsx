@@ -5,7 +5,7 @@ export const Pets = () => {
 
     const [listPets, setListPets] = useState(mascotas)
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         const getListPets = async () => {
             try {
@@ -18,7 +18,7 @@ export const Pets = () => {
         }
         getListPets()
 
-    }, [])
+    }, [])*/
 
     return(
         <div className="w-full flex flex-col justify-center items-center py-40">
