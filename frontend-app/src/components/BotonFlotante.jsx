@@ -66,8 +66,8 @@ export const BotonFlotante = () => {
             {/*Formulario */}
 
             <div className={`bg-Blue rounded-2xl h-[90%] overflow-auto p-4 flex-col justify-center items-center ${isExpanded ? 'flex-col': 'hidden'}`} style={{transition: 'width 0.8s ease, height 0.8s ease, margin 0.8s ease'}}> {/* overflow-auto permite el scroll si el contenido es mayor */}
-                <form action="" className="flex w-full flex-col gap-4 justify-center items-center">
-                    <ul className="flex flex-col gap-8">
+                <form action="" className="flex w-full flex-col gap-4 justify-center items-center mt-7">
+                    <ul className="flex flex-col gap-7">
                         <Lista nombreCampo={"Nombre"} tipo={"text"}/>
                         <Lista nombreCampo={"Especie"} tipo={"text"}/>
                         <Lista nombreCampo={"Raza"} tipo={"text"}/>
@@ -76,7 +76,7 @@ export const BotonFlotante = () => {
                         <Lista nombreCampo={"Tamaño"} tipo={"text"}/>
                         <Lista nombreCampo={"Estado de salud"} tipo={"text"}/>
                     </ul>
-                    <button className="text-xl text-Newhite ">
+                    <button className="text-xl w-[69.2%] mt-3 flex justify-center items-center h-12 text-Newhite  border-2 rounded-2xl p-4 hover:scale-105 transition-all hover:bg-orange">
                         Agregar
                     </button>
                 </form>
