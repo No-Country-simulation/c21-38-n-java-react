@@ -30,8 +30,12 @@ public class PetsBusiness {
 		return DataUtils.buildResponse(MessageResponseEnum.PETS_NOT_FOUND, new ArrayList<>());
 	}
 
-	public Optional<Pet> getPet(Long id) {
-		return petService.getPet(id);
+	public GeneralResponse<Pet> getPet(Long id) {
+		Optional<Pet> pet = petService.getPet(id);
+		if (pet.isPresent()) {
+			return DataUtils.buildResponse(MessageResponseEnum.PET_FOUND_SUCCESSFUL, pet.get());
+		}
+		return DataUtils.buildResponse(MessageResponseEnum.PET_NOT_FOUND, null);
 	}
 
 	public void savePet(@RequestBody Pet pet) {

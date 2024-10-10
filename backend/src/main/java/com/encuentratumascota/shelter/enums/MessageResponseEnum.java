@@ -3,7 +3,9 @@ package com.encuentratumascota.shelter.enums;
 public enum MessageResponseEnum {
 	
 	PETS_FOUND_SUCCESSFUL(200,"Las mascotas fueron obtenidas exitosamente"),
-	PETS_NOT_FOUND(404,"No existen mascotas para mostrar");
+	PETS_NOT_FOUND(404,"No existen mascotas para mostrar"),
+	PET_FOUND_SUCCESSFUL(200, "Mascota encontrada con éxito."),
+	PET_NOT_FOUND(404, "No se encontró la mascota con el Id proporcionado.");
 
 	
 	

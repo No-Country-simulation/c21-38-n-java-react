@@ -45,6 +45,7 @@ public class Pet {
     @NotNull(message = "La edad no puede ser nula")
     @Min(value = 1, message = "La edad debe ser mayor o igual a 1")
     @Max(value = 999, message = "La edad debe ser menor o igual a 999")
+    @Column(name = "age")
     private Integer age;
 
     @NotBlank(message = "El género no puede estar vacío")
