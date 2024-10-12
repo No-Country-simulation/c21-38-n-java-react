@@ -9,7 +9,7 @@ export const Error = () => {
             </div>
             <div className='flex flex-col items-center'>
                 <h1 className="text-orange text-8xl mb-32 error-page tracking-wider z-10 efecText">
-                    ¡Wooof! - ¡Parece que algo salió mal!
+                    ¡Woooof! - ¡Parece que algo salió mal!
                 </h1>
                 <img src="/public/images/404.svg" alt="404 Not Found" className="w-[25%] z-20" />
             </div>
