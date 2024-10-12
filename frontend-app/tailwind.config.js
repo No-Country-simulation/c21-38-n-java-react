@@ -25,7 +25,11 @@ export default {
       },
       brightness: {
         '80': 'brightness(0.8)'
-      }
+      },
+
+      backgroundImage: {
+        'custom-gradient': 'radial-gradient(circle, rgba(31,72,92,1) 70%, rgba(243,156,18,1) 100%)',
+      },
       
     },
   },

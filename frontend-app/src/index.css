@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* .image {
   background-image: url('/images/HeaderIMG.jpg');
   height: 344px;
@@ -43,4 +44,3 @@
 .bounce2:hover{
   animation: bounce 1s infinite;
 }
-
