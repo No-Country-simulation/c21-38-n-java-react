@@ -9,43 +9,43 @@
 hs_err_pid*
 
 # Directorios de compilación
-/backend/bin/
-/backend/out/
-/backend/target/
-/backend/build/
+/bin/
+/out/
+/target/
+/build/
 
 ### Maven ###
-/backend/.mvn/
-!/backend/.mvn/wrapper/maven-wrapper.jar
+/.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
 **/target/
 
 # Archivos de configuración local de Maven
-/backend/settings.xml
+/settings.xml
 
 ### Spring Boot ###
-/backend/spring.log
+/spring.log
 
 ### IntelliJ IDEA ###
-/backend/.idea/
+/.idea/
 *.iws
 *.iml
 *.ipr
-/backend/out/
+/out/
 
 # Archivos de configuración específicos de módulos
-/backend/module-info.java
-/backend/.classpath
+/module-info.java
+/.classpath
 
 ### Eclipse ###
-/backend/.project
-/backend/.classpath
-/backend/.settings/
-/backend/.apt_generated/
-/backend/.factorypath/
-/backend/.sts4-cache/
+/.project
+/.classpath
+/.settings/
+/.apt_generated/
+/.factorypath/
+/.sts4-cache/
 
 ### Visual Studio Code ###
-/backend/.vscode/
+/.vscode/
 *.code-workspace
 
 ### Sistemas operativos ###
@@ -81,10 +81,10 @@ replay_pid*
 
 ### Archivos generados ###
 # Archivos generados por tests o builds
-/backend/test-output/
-/backend/surefire-reports/
+/test-output/
+/surefire-reports/
 backend/jacoco.exec
-/backend/coverage/
+/coverage/
 
 # Archivos de empaquetado
 *.zip
