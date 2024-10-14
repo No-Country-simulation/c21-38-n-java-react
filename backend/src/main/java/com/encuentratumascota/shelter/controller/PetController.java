@@ -29,9 +29,8 @@ public class PetController {
 	}
 
 	@PostMapping
-	public Pet savePet(@RequestBody Pet pet) {
-		this.petsBusiness.savePet(pet);
-		return pet;
+	public GeneralResponse<Optional<Pet>> savePet(@RequestBody Pet pet) {
+		return petsBusiness.savePet(pet);
 	}
 
 	@PutMapping("/{id}")

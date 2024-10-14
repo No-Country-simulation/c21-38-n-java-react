@@ -25,8 +25,9 @@ public class PetService implements IPetService {
     }
 
     @Override
-    public void savePet(Pet pet) {
-        this.petRepository.save(pet);
+    public Optional<Pet> savePet(Pet pet) {
+        return Optional.of(this.petRepository.save(pet));
+
     }
 
     @Override

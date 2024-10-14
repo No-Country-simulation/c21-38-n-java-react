@@ -9,4 +9,8 @@ public class DataUtils {
 		return GeneralResponse.<T>builder().code(messageResponse.getCode()).message(messageResponse.getMessage()).body(body).build();
 	}
 
+	public static <T> GeneralResponse<T> buildResponseWithError(MessageResponseEnum messageResponse,String errorMessage, T body){
+		return GeneralResponse.<T>builder().code(messageResponse.getCode()).message(messageResponse.getMessage() + errorMessage).body(body).build();
+	}
+
 }
