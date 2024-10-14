@@ -1,3 +1,93 @@
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.javadoc
+*.ser
+hs_err_pid*
 
+# Directorios de compilación
+/bin/
+/out/
+/target/
+/build/
+
+### Maven ###
+/.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+**/target/
+
+# Archivos de configuración local de Maven
+settings.xml
+
+### Spring Boot ###
+/spring.log
+
+### IntelliJ IDEA ###
 .idea/
+*.iws
+*.iml
+*.ipr
+/out/
+
+# Archivos de configuración específicos de módulos
+module-info.java
+.classpath
+
+### Eclipse ###
 .project
+.classpath
+.settings/
+.apt_generated/
+.factorypath/
+.sts4-cache/
+
+### Visual Studio Code ###
+.vscode/
+*.code-workspace
+
+### Sistemas operativos ###
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~ 
+.nfs*
+
+### Archivos temporales ###
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+
+### Logs y reportes ###
+*.log
+*.pid
+*.gz
+/hs_err_pid*
+replay_pid*
+
+### Archivos generados ###
+# Archivos generados por tests o builds
+/test-output/
+surefire-reports/
+jacoco.exec
+coverage/
+
+# Archivos de empaquetado
+*.zip
+*.tar.gz
+*.7z
+*.rar
