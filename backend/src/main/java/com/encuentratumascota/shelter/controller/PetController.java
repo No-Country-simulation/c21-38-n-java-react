@@ -2,7 +2,9 @@ package com.encuentratumascota.shelter.controller;
 
 import com.encuentratumascota.shelter.business.PetsBusiness;
 import com.encuentratumascota.shelter.dto.GeneralResponse;
+import com.encuentratumascota.shelter.enums.MessageResponseEnum;
 import com.encuentratumascota.shelter.model.Pet;
+import com.encuentratumascota.shelter.util.DataUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class PetController {
 	}
 
 	@GetMapping("/{id}")
-	public Optional<Pet> getPet(@PathVariable Long id) {
+	public GeneralResponse<Pet> getPet(@PathVariable Long id) {
 		return this.petsBusiness.getPet(id);
 	}
 
