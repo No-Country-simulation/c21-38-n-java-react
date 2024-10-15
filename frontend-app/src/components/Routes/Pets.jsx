@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import 'ldrs/tailChase'
-// import { mascotas } from "../../store/mascotas"
+import { mascotas } from "../../store/mascotas"
+import { Pet } from "./Pet"
 
 export const Pets = () => {
 
-  const [listPets, setListPets] = useState([])
-  // const [listPets, setListPets] = useState(mascotas)
+  // const [listPets, setListPets] = useState([])
+  const [listPets, setListPets] = useState(mascotas)
 
   useEffect(() => {
 
@@ -41,21 +42,7 @@ export const Pets = () => {
         <div className=" flex flex-wrap justify-center items-center">
           {
             listPets.map(pet => (
-              <div key={pet.name} className="group cursor-pointer relative hover:scale-105 hover:z-30 transition-all duration-200">
-                <div
-                  className="flex flex-col border-gray-400 h-[400px] w-[400px] bg-gray-100 group-hover:brightness-100">
-                  <img 
-                    src={pet.imageProfile || "/images/cachorro3.jpg"} 
-                    alt={pet.name} 
-                    className="w-full h-full object-cover brightness-50 group-hover:brightness-80"
-                    onError={(e) => e.target.src = "/images/perro8.jpg"}
-                  />
-                  <div className="absolute w-[30%] bottom-4 left-4 font-semibold text-2xl text-gray-200 group-hover:text-white">
-                    <p>{pet.name}</p>
-                    <p>{pet.breed}</p>
-                  </div>
-                </div>
-              </div>
+              <Pet key={pet.name} {...pet}/>
             ))
           }
         </div>

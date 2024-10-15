@@ -8,6 +8,7 @@ export const Home=()=>{
             <SobreNosotros/>
 
             <Mascotas />
+
         </section>
     )
 }
