@@ -33,6 +33,9 @@ export default {
       transitionDuration: {
         '30000': '30000ms'
       },
+      backgroundImageLogin:{
+        'BgLogin' : 'url(/images/DosGatos.jpg'
+      }
       
     },
   },

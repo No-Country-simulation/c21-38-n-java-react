@@ -6,6 +6,9 @@ import App from './App.jsx'
 import './index.css'
 import { Home } from './components/Home.jsx'
 import { Error } from './components/Routes/Error.jsx'
+import { Registre } from './components/Routes/Registre.jsx'
+import { Login } from './components/Routes/Login.jsx'
+import { RegistroMascota } from './components/Routes/RegistroMascota.jsx'
 
 const router=createBrowserRouter(
     [
@@ -20,12 +23,24 @@ const router=createBrowserRouter(
           {
             path:'/huellitas',
             element:<Pets/>
-          }
+          },
         ]
       },
       {
         path:'/error',
         element:<Error/>
+      },
+      {
+        path:'/Registre',
+        element:<Registre/>
+      },
+      {
+        path:'/login',
+        element:<Login/>
+      },
+      {
+        path:'/R-Mascota',
+        element:<RegistroMascota/>
       }
     ]
 )
