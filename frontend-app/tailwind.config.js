@@ -25,6 +25,25 @@ export default {
       },
       brightness: {
         '80': 'brightness(0.8)'
+      },
+
+      backgroundImage: {
+        'custom-gradient': 'radial-gradient(circle, rgba(31,72,92,1) 70%, rgba(243,156,18,1) 100%)',
+      },
+      backgroundColor: {
+        'colorBlue': '#1F485C'
+      },
+      zIndex: {
+        '100': '100',
+        '110': '110',
+        '120': '120',
+      },
+      borderRadius: {
+        'imagePet': '35% 65% 49% 51% / 73% 23% 77% 27%',
+        'backImagePet': '63% 37% 54% 46% / 38% 13% 87% 62%',
+      },
+      rotate: {
+        '30': 'rotate(30deg)'
       }
       
     },

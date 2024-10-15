@@ -7,18 +7,19 @@ import { Lista } from "./Lista";
 
 export const BotonFlotante = () => {
     const [size, setSize] = useState({
-        width: '56vh', // devolver a 25vh
-        height: '90vh', //devolver a 12
+        width: '25vh', // devolver a 25vh
+        height: '12vh', //devolver a 12
         marginLeft: '15px',
         marginBottom: '25px',
         marginRight: '15px',
+        
     });
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleSize = () => {
         setSize(prevSize => ({
-            width: prevSize.width === '56vh' ? '56vh' : '56vh',//devolver a 25 
-            height: prevSize.height === '90vh' ? '90vh' : '90vh',//devolver a 12
+            width: prevSize.width === '25vh' ? '56vh' : '25vh',//devolver a 25 
+            height: prevSize.height === '12vh' ? '90vh' : '12vh',//devolver a 12
             marginLeft: prevSize.marginLeft === '15px' ? '17vh' : '15px',
             marginRight: prevSize.marginRight === '15px' ? '17vh' : '15px',
             marginBottom: prevSize.marginBottom === '25px' ? '20vh' : '25px'
@@ -28,7 +29,7 @@ export const BotonFlotante = () => {
 
     return (
         <div
-            className={`text-7xl flex-col fixed mr-6 mb-8  bottom-4 right-4 p-5 shadow-xl z-50 bg-opacity-5 backdrop-blur-3xl transition-all border-2 border-orange  ${isExpanded ? 'rounded-3xl' : 'rounded-3xl'}`}//rounded-full
+            className={`text-7xl flex-col fixed mr-6 mb-8  bottom-4 right-4 p-[2.1vh] shadow-xl z-50 bg-opacity-5 backdrop-blur-3xl transition-all border-2 border-orange  ${isExpanded ? 'rounded-3xl' : 'rounded-full'}`}
             style={{
                 width: size.width,
                 height: size.height,
@@ -65,18 +66,19 @@ export const BotonFlotante = () => {
 
             {/*Formulario */}
 
-            <div className={`bg-Blue rounded-2xl h-[90%] overflow-auto p-4 flex-col justify-center items-center ${isExpanded ? 'hidden' : 'flex-col'}`} style={{transition: 'width 0.8s ease, height 0.8s ease, margin 0.8s ease'}}> {/* overflow-auto permite el scroll si el contenido es mayor */}
-                <form action="" className="flex w-full flex-col gap-4 justify-center items-center">
-                    <ul className="flex flex-col gap-8">
-                        <Lista nombreCampo={"Nombre"} tipo={"text"}/>
-                        <Lista nombreCampo={"Especie"} tipo={"text"}/>
-                        <Lista nombreCampo={"Raza"} tipo={"text"}/>
-                        <Lista nombreCampo={"Edad"} tipo={"text"}/>
-                        <Lista nombreCampo={"Genero"} tipo={"text"}/>
-                        <Lista nombreCampo={"Tamaño"} tipo={"text"}/>
-                        <Lista nombreCampo={"Estado de salud"} tipo={"text"}/>
+            <div className={`bg-Blue rounded-2xl h-[90%] overflow-auto p-4 flex-col justify-center items-center ${isExpanded ? 'flex-col': 'hidden'}`} style={{transition: 'width 0.8s ease, height 0.8s ease, margin 0.8s ease'}}> {/* overflow-auto permite el scroll si el contenido es mayor */}
+                <form action="" className="flex w-full flex-col gap-3 justify-center items-center mt-5">
+                    <ul className="flex flex-col gap-7">
+                        <Lista nombreCampo={"Nombre"} tipo={"text"} isImput={1}/>
+                        <Lista nombreCampo={"Especie"} tipo={"text"} isImput={1}/>
+                        <Lista nombreCampo={"Raza"} tipo={"text"} isImput={1}/>
+                        <Lista nombreCampo={"Edad"} tipo={"text"} isImput={1}/>
+                        <Lista nombreCampo={"Genero"} tipo={"text"} isImput={0}/>
+                        <Lista nombreCampo={"Tamaño"} tipo={"text"} isImput={1}/>
+                        <Lista nombreCampo={"Estado de salud"} tipo={"text"} isImput={1}/>
+                        <Lista nombreCampo={"Foto"} tipo={"file"} isImput={1} />
                     </ul>
-                    <button className="text-xl text-Newhite ">
+                    <button className="text-xl w-[70%] mt-3 flex justify-center items-center h-12 text-Newhite  border-2 rounded-2xl p-4 hover:scale-105 transition-all hover:bg-orange">
                         Agregar
                     </button>
                 </form>
