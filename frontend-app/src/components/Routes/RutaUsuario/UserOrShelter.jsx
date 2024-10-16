@@ -1,10 +1,15 @@
-import { Formulario } from "./Formulario"
+import { Formulario } from "./CrearFormularioUsuario"
 import { Nav } from "../../Nav"
-import { useFormulario } from "./UserFormulario";
 import { preguntasAdoptante,preguntasVeterinaria } from "./PreguntasUsuario";
+import { useState } from "react";
 
 export const UserOrShelter = ({photo}) =>{
-    const { isFormActive, isAdoptante, toggleActiveForm, toggleIsAdoptante, toggleRefugio } = useFormulario();
+    const [isFormActive, setIsFormActive] = useState(false);
+    const [isAdoptante, setIsAdoptante] = useState(true);
+
+    const toggleActiveForm = () => setIsFormActive(true);
+    const toggleIsAdoptante = () => setIsAdoptante(true);
+    const toggleRefugio = () => setIsAdoptante(false);
 
 
     return(
