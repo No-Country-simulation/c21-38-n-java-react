@@ -9,6 +9,8 @@ import { Error } from './components/Routes/Error.jsx'
 import { Registre } from './components/Routes/Registre.jsx'
 import { Login } from './components/Routes/Login.jsx'
 import { RegistroMascota } from './components/Routes/RegistroMascota.jsx'
+import { EditarUsuario } from './components/Routes/EditarUsuario.jsx'
+import { EditarMascota } from './components/Routes/EditarMascota.jsx'
 
 const router=createBrowserRouter(
     [
@@ -41,6 +43,14 @@ const router=createBrowserRouter(
       {
         path:'/R-Mascota',
         element:<RegistroMascota/>
+      },
+      {
+        path:'/editUser',
+        element:<EditarUsuario/>
+      },
+      {
+        path:'/editPet',
+        element:<EditarMascota/>
       }
     ]
 )

@@ -3,7 +3,7 @@ import { Nav } from "../Nav"
 import { useFormulario } from "./UserFormulario";
 
 
-export const Registre = () =>{
+export const EditarUsuario = () =>{
     const { isFormActive, isAdoptante, toggleActiveForm, toggleIsAdoptante, toggleRefugio } = useFormulario();
 
 
@@ -26,7 +26,7 @@ export const Registre = () =>{
     ];
 
     return(
-        <main className={`p-10  bg-cover ${isFormActive ? "h-full" : "h-screen"} bg-center flex flex-col justify-center items-center`} style={{ backgroundImage: `url('/public/images/3perros.jpg')` }}>
+        <main className={`p-10  bg-cover ${isFormActive ? "h-full" : "h-screen"} bg-center flex flex-col justify-center items-center`} style={{ backgroundImage: `url('/public/images/fondo5.jpg')` }}>
             
             <Nav/>
 
@@ -40,7 +40,7 @@ export const Registre = () =>{
 
             </div>
 
-            {isFormActive && (<Formulario titulo={"Registrarse"} preguntas={isAdoptante? preguntasAdoptante : preguntasVeterinaria} />)}
+            {isFormActive && (<Formulario titulo={"Editar usuario"} preguntas={isAdoptante? preguntasAdoptante : preguntasVeterinaria} />)}
 
         </main>
     )

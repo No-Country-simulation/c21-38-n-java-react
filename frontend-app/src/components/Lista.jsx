@@ -1,6 +1,6 @@
 export const Lista = ({ nombreCampo, tipo, isImput }) => {
     return (
-        <li className="flex flex-col ">
+        <li className="flex flex-col mt-9">
             {isImput ? (
                 tipo === "file" ? (
                     <div className=" relative  rounded-2xl text-lg  focus:outline-none curso focus:border-orange">

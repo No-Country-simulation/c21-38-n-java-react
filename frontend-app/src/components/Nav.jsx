@@ -15,6 +15,10 @@ export const Nav = () => {
       <ul>
         <Link to="/login" className="text-2xl text-blue font-semibold">Login</Link>
       </ul>
+
+      <ul>
+        <Link to="/R-Mascota" className="text-2xl text-blue font-semibold">Agregar Mascota</Link>
+      </ul>
     </nav>
   )
 }
