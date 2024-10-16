@@ -5,12 +5,12 @@ import { Pets } from './components/Routes/Pets.jsx'
 import App from './App.jsx'
 import './index.css'
 import { Home } from './components/Home.jsx'
-import { Error } from './components/Routes/Error.jsx'
-import { Registre } from './components/Routes/Registre.jsx'
+import { Error } from './components/Routes/RutaError/Error.jsx'
+import { RegistrarUsuario } from './components/Routes/RutaUsuario/RegistrarUsuario.jsx'
 import { Login } from './components/Routes/Login.jsx'
-import { RegistroMascota } from './components/Routes/RegistroMascota.jsx'
-import { EditarUsuario } from './components/Routes/EditarUsuario.jsx'
-import { EditarMascota } from './components/Routes/EditarMascota.jsx'
+import { RegistroMascota } from './components/Routes/RutaMascotas/RegistroMascota.jsx'
+import { EditarUsuario } from './components/Routes/RutaUsuario/EditarUsuario.jsx'
+import { EditarMascota } from './components/Routes/RutaMascotas/EditarMascota.jsx'
 
 const router=createBrowserRouter(
     [
@@ -33,15 +33,15 @@ const router=createBrowserRouter(
         element:<Error/>
       },
       {
-        path:'/Registre',
-        element:<Registre/>
+        path:'/RegistroUsario',
+        element:<RegistrarUsuario/>
       },
       {
         path:'/login',
         element:<Login/>
       },
       {
-        path:'/R-Mascota',
+        path:'/RegistroMascota',
         element:<RegistroMascota/>
       },
       {

@@ -21,7 +21,7 @@ export const Formulario = ({ titulo, preguntas }) => {
                 type="submit" 
                 className="w-full mt-9 text-xl border bg-Blue text-white p-2 rounded-md hover:bg-orange hover:text-Blue hover:scale-[101%]"
             >
-                <Link to="/login">Registrase</Link>
+                <Link to="/login">{titulo}</Link>
             </button>
         </form>
     );

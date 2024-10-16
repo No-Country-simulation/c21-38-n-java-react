@@ -1,32 +1,15 @@
-import { Formulario } from "../Formulario"
-import { Nav } from "../Nav"
+import { Formulario } from "./Formulario"
+import { Nav } from "../../Nav"
 import { useFormulario } from "./UserFormulario";
+import { preguntasAdoptante,preguntasVeterinaria } from "./PreguntasUsuario";
 
-
-export const EditarUsuario = () =>{
+export const UserOrShelter = ({photo}) =>{
     const { isFormActive, isAdoptante, toggleActiveForm, toggleIsAdoptante, toggleRefugio } = useFormulario();
 
 
-    const preguntasAdoptante = [
-        { texto: 'Nombre de usario', tipo:'text' },
-        { texto: 'Correo Electrónico', tipo:'email' },
-        { texto: 'Contraseña', tipo:'password'},
-        {texto: 'Repetir Contraseña', tipo:'password'},
-        {texto: 'Direccion',tipo:'text'},
-        {texto: 'Telefono', tipo:'number'}
-    ];
-    
-    const preguntasVeterinaria = [
-        { texto: 'Nombre del establecimiento' },
-        { texto: 'Quit del establecimiento' },
-        {texto: 'Contraseña'},
-        {texto:'Repetir Contraseña'},
-        {texto: 'Direccion del establecimiento'},
-        {texto: 'Telefono del establecimiento'}
-    ];
-
     return(
-        <main className={`p-10  bg-cover ${isFormActive ? "h-full" : "h-screen"} bg-center flex flex-col justify-center items-center`} style={{ backgroundImage: `url('/public/images/fondo5.jpg')` }}>
+        <main className={`p-10  bg-cover ${isFormActive ? "h-full" : "h-screen"} bg-center flex flex-col justify-center items-center`} 
+            style={{ backgroundImage: `url('/public/images/${photo}')` }}>
             
             <Nav/>
 
