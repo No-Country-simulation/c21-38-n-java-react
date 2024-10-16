@@ -1,5 +1,7 @@
 package com.encuentratumascota.shelter.model;
 
+import com.encuentratumascota.shelter.converter.BreedConverter;
+import com.encuentratumascota.shelter.converter.SpecieConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -32,10 +34,12 @@ public class Pet {
 
     @NotNull(message = "Se dede elegir una especie")
     @Enumerated(EnumType.STRING)
+    @Convert(converter = SpecieConverter.class)
     private Specie specie;
 
     @NotNull(message = "Se dede elegir una raza")
     @Enumerated(EnumType.STRING)
+    @Convert(converter = BreedConverter.class)
     private Breed breed;
 
     @Length(max = 250,message = "La descripción de la especie no puede contener más de 250 caractéres")
@@ -44,7 +48,7 @@ public class Pet {
 
     @NotNull(message = "La edad no puede ser nula")
     @Min(value = 1, message = "La edad debe ser mayor o igual a 1")
-    @Max(value = 999, message = "La edad debe ser menor o igual a 999")
+    @Max(value = 99, message = "La edad debe ser menor o igual a 99")
     @Column(name = "age")
     private Integer age;
 
@@ -68,4 +72,47 @@ public class Pet {
 
     private boolean activeStatus;
 
+    public String getSpecie() {
+        return specie != null ? specie.getText() : null;
+    }
+
+    public String getBreed() {
+        if (breed != null) {
+            String breedText = breed.getText().replace("_", " ");
+            return capitalizeWords(breedText);
+        }
+        return null;
+    }
+
+    public String getGender() {
+        return gender.equalsIgnoreCase("M") ? "Macho" : "Hembra";
+    }
+
+    public String getSize() {
+        if (size != null) {
+            switch (size.toUpperCase()) {
+                case "P":
+                    return "Pequeño";
+                case "M":
+                    return "Mediano";
+                case "G":
+                    return "Grande";
+            }
+        }
+        return null;
+    }
+
+    private String capitalizeWords(String text) {
+        String[] words = text.split(" ");
+        StringBuilder capitalizedText = new StringBuilder();
+        for (String word : words) {
+            capitalizedText.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1).toLowerCase())
+                    .append(" ");
+        }
+        return capitalizedText.toString().trim();
+    }
+
 }
+
+

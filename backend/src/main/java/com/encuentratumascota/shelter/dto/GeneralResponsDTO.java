@@ -5,9 +5,11 @@ import lombok.Data;
 
 @Data
 @Builder
-public class GeneralResponse<T> {
+public class GeneralResponsDTO<T> {
 	
 	private Integer code;
 	private String message;
 	private T body;
+
+
 }
