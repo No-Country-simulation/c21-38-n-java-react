@@ -1,8 +1,0 @@
-com\encuentratumascota\shelter\model\Breed.class
-com\encuentratumascota\shelter\model\Pet.class
-com\encuentratumascota\shelter\service\PetService.class
-com\encuentratumascota\shelter\service\IPetService.class
-com\encuentratumascota\shelter\model\Specie.class
-com\encuentratumascota\shelter\controller\PetController.class
-com\encuentratumascota\shelter\repository\IPetRepository.class
-com\encuentratumascota\shelter\ShelterApplication.class
