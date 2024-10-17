@@ -1,4 +1,4 @@
-import { useDialogPet } from "../../store/ui/pet-dialog"
+import { useDialogPet } from "../../../../store/ui/pet-dialog"
 
 export const Pet = (pet) => {
 

@@ -16,11 +16,11 @@ export const Mascotas = () => {
         const data = await response.json()
         console.log(data.body)
         setPets(data.body.slice(0, 4))
-        setPets(Array.isArray(data.body) ? data.body.slice(0, 4) : []);
+        // setPets(Array.isArray(data.body) ? data.body.slice(0, 4) : []);
         
       } catch (error) {
         console.log(error)
-        setPets([])
+        // setPets([])
       }
     }
     getListPets()

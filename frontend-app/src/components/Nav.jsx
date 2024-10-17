@@ -7,7 +7,18 @@ export const Nav = () => {
       <ul>
         <Link to="/huellitas"><li className="text-2xl text-blue font-semibold">Huellitas</li></Link>
       </ul>
-      <p className="text-2xl text-blue font-semibold">Login</p>
+
+      <ul>
+        <Link to="/RegistroUsario" className="text-2xl text-blue font-semibold">Registrarme</Link>
+      </ul>
+
+      <ul>
+        <Link to="/login" className="text-2xl text-blue font-semibold">Login</Link>
+      </ul>
+
+      <ul>
+        <Link to="/RegistroMascota" className="text-2xl text-blue font-semibold">Agregar Mascota</Link>
+      </ul>
     </nav>
   )
 }

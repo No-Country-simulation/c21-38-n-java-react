@@ -44,6 +44,12 @@ export default {
       },
       rotate: {
         '30': 'rotate(30deg)'
+      },
+      transitionDuration: {
+        '30000': '30000ms'
+      },
+      backgroundImageLogin:{
+        'BgLogin' : 'url(/images/DosGatos.jpg'
       }
       
     },
