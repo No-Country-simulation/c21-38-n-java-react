@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import 'ldrs/tailChase'
-import { mascotas } from "../../../store/mascotas"
+// import { mascotas } from "../../../store/mascotas"
 import { Pet } from "./components/Pet"
 
 export const Pets = () => {
 
-  // const [listPets, setListPets] = useState([])
-  const [listPets, setListPets] = useState(mascotas)
+  const [listPets, setListPets] = useState([])
+  // const [listPets, setListPets] = useState(mascotas)
 
   useEffect(() => {
 
@@ -15,9 +15,9 @@ export const Pets = () => {
         const response = await fetch('https://c21-38-n-java-react.onrender.com/api/pets')
         const data = await response.json()
         console.log(data)
-        // setListPets(Array.isArray(data.body) ? data.body : []);
+        setListPets(Array.isArray(data.body) ? data.body : []);
       } catch (error) {
-        // setListPets([])
+        setListPets([])
         console.log(error)
       }
     }

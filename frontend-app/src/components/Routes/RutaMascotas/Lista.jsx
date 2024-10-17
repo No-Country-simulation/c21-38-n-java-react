@@ -75,7 +75,7 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
             &&
 
             <select
-              name={nombreCampo}
+              name="Especie"
               id=""
               value={valueEspecie}
               onChange={handleChangeEspecie}
@@ -85,7 +85,6 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
                 {nombreCampo}
               </option>
               {
-
                 optionsEspecie.map(opt => (
                   <option key={opt.name} value={opt.value}>{opt.name}</option>
                 ))
@@ -95,7 +94,7 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
           {
             controlRaza &&
             <select
-              name={nombreCampo}
+              name="Raza"
               id=""
               className="w-80 h-auto py-2 rounded-2xl text-lg border focus:outline-none focus:border-orange  text-center"
             >

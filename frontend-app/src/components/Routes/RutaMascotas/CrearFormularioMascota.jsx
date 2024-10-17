@@ -2,18 +2,34 @@ import {Lista} from "./Lista.jsx"
 import { Nav } from "../../Nav.jsx";
 import { camposMascota } from "./camposMascota.js";
 import { createPet } from "../../../store/api/createMascota.js";
+import { convertImageToWebP } from "../../../utils/webp.js";
 
 export const CrearFormulario = ({title, photo}) => {
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const fields = Object.fromEntries(new window.FormData(event.target))
-
-        const response = createPet(fields)
-        console.log(response)
-
-        return
-    }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        
+        // No usar Object.fromEntries, obtener directamente el FormData
+        const formData = new FormData(event.target);  // Obtener FormData desde el formulario
+        const originalImage = formData.get('Foto');
+        const webpImage = await convertImageToWebP(originalImage);
+        // Crear un objeto con los datos del FormData
+        const fields = {
+            "Tamaño": formData.get("Tamaño"),
+            "Genero": formData.get("Genero"),
+            "Nombre": formData.get("Nombre"),
+            "Estado de salud": formData.get("Estado de salud"),
+            "Raza": formData.get("Raza"),
+            "Especie": formData.get("Especie"),
+            "Descripción": formData.get("Descripción"),
+            "Edad": formData.get("Edad"),
+            "Foto": webpImage  // Aquí obtienes el archivo
+        };
+    
+        // Enviar los datos
+        const response = await createPet(fields);
+        console.log(response);
+    };
 
     return (
         <section className="h-full w-full bg-cover bg-center flex flex-col justify-center items-center" 

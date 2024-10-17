@@ -2,12 +2,12 @@ import { Mascota } from "./Mascota"
 import '../index.css'
 import { useEffect, useState } from "react"
 import 'ldrs/tailChase'
-import { mascotas } from "../store/mascotas"
+// import { mascotas } from "../store/mascotas"
 
 export const Mascotas = () => {
 
-  // const [pets, setPets] = useState([])
-  const [pets, setPets] = useState(mascotas.slice(0, 4))
+  const [pets, setPets] = useState([])
+  // const [pets, setPets] = useState(mascotas.slice(0, 4))
 
   useEffect(() => {
     const getListPets = async () => {
@@ -16,11 +16,11 @@ export const Mascotas = () => {
         const data = await response.json()
         console.log(data.body)
         setPets(data.body.slice(0, 4))
-        // setPets(Array.isArray(data.body) ? data.body.slice(0, 4) : []);
+        setPets(Array.isArray(data.body) ? data.body.slice(0, 4) : []);
         
       } catch (error) {
         console.log(error)
-        // setPets([])
+        setPets([])
       }
     }
     getListPets()
