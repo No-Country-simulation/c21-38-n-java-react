@@ -1,7 +1,9 @@
 package com.encuentratumascota.shelter.business;
 
 import com.encuentratumascota.shelter.dto.GeneralResponse;
+import com.encuentratumascota.shelter.enums.Breed;
 import com.encuentratumascota.shelter.enums.MessageResponseEnum;
+import com.encuentratumascota.shelter.enums.Specie;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.service.PetService;
 import com.encuentratumascota.shelter.util.DataUtils;
@@ -47,10 +49,16 @@ public class PetsBusiness {
         }
     }
 
-
-    public Pet editPet(Long id, Pet pet) {
-        this.petService.editPet(id, pet);
-        return pet;
+    public GeneralResponse<Optional<Pet>> editPet(Long id, Pet pet) {
+        try {
+            Optional<Pet> updatedPet = petService.editPet(id, pet);
+            if (updatedPet.isEmpty()) {
+                return DataUtils.buildResponse(MessageResponseEnum.PET_NOT_FOUND, Optional.empty());
+            }
+            return DataUtils.buildResponse(MessageResponseEnum.PET_UPDATED_SUCCESSFUL, updatedPet);
+        } catch (Exception e) {
+            return DataUtils.buildResponseWithError(MessageResponseEnum.PET_NOT_UPDATED, e.getMessage(), Optional.of(pet));
+        }
     }
 
 }

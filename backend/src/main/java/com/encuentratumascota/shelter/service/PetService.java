@@ -1,5 +1,7 @@
 package com.encuentratumascota.shelter.service;
 
+import com.encuentratumascota.shelter.enums.Breed;
+import com.encuentratumascota.shelter.enums.Specie;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.repository.IPetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +33,23 @@ public class PetService implements IPetService {
     }
 
     @Override
-    public void editPet(Long id, Pet pet){
-        Pet petToEdit = this.findPet(id);
-        this.petRepository.save(pet);
+    public Optional<Pet> editPet(Long id, Pet pet) {
+        Optional<Pet> existingPet = this.getPet(id);
+        if (existingPet.isEmpty()) {
+            return Optional.empty();
+        }
+        Pet petToUpdate = existingPet.get();
+        petToUpdate.setName(pet.getName());
+        petToUpdate.setSpecie(Specie.valueOf(pet.getSpecie()));
+        petToUpdate.setBreed(Breed.valueOf(pet.getBreed()));
+        petToUpdate.setDescriptionBreed(pet.getDescriptionBreed());
+        petToUpdate.setAge(pet.getAge());
+        petToUpdate.setGender(pet.getGender());
+        petToUpdate.setHealthStatus(pet.getHealthStatus());
+        petToUpdate.setImageProfile(pet.getImageProfile());
+        return this.savePet(petToUpdate);
     }
+
 
     @Override
     public Pet findPet(Long id) {

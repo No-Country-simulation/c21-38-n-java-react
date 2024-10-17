@@ -5,6 +5,7 @@ import com.encuentratumascota.shelter.dto.GeneralResponse;
 import com.encuentratumascota.shelter.enums.MessageResponseEnum;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.util.DataUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,9 +37,8 @@ public class PetController {
 	}
 
 	@PutMapping("/{id}")
-	public Pet editPet(@PathVariable Long id, @RequestBody Pet pet) {
-		this.petsBusiness.editPet(id, pet);
-		return pet;
+	public GeneralResponse<Optional<Pet>> editPet(@PathVariable Long id, @RequestBody Pet pet) {
+		return petsBusiness.editPet(id, pet);
 	}
 
 }

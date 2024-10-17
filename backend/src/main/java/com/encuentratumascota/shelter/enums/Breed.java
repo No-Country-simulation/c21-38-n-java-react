@@ -15,9 +15,6 @@ public enum Breed {
     PERSIAN("Persa"),
     SPHINX("Sphinx");
 
-    //Birds
-
-    //Reptiles
     private String text;
 
     private Breed(String text){
@@ -27,7 +24,5 @@ public enum Breed {
     public String getText(){
         return text;
     }
-
-
 
 }

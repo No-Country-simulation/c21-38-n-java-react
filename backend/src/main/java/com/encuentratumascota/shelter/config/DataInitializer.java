@@ -305,11 +305,8 @@ public class DataInitializer {
                 "M",  // Mediano
                 true  // Activo
         ));
-
     
     pets.forEach(pet-> petRepository.save(pet));
-    
-    
 
 	}
 }

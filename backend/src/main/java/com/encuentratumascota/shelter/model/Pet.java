@@ -72,7 +72,7 @@ public class Pet {
 
     private boolean activeStatus;
 
-    public String getSpecie() {
+    public @NotNull(message = "Se dede elegir una especie") String getSpecie() {
         return specie != null ? specie.getText() : null;
     }
 
