@@ -19,8 +19,8 @@ export const Footer=()=>{
                 </div >
 
                 <div className="absolute text-xl ml-[28%] flex-col ">
-                    <div className="mt-3">
-                        <a href="https://www.linkedin.com/in/azariel-moreno-4267ba254/">
+                    <div className="mt-8">
+                        <a href="https://www.linkedin.com/in/manuel-ca%C3%B1on-b6245118a/">
                             <strong>Manuel Cañon</strong> 
                         </a>
                     </div>
@@ -30,13 +30,8 @@ export const Footer=()=>{
                         </a>
                     </div>
                     <div className="mt-3">
-                        <a href="https://www.linkedin.com/in/manuel-ca%C3%B1on-b6245118a//">
+                        <a href="https://www.linkedin.com/in/manurodriguezdev/">
                             <strong>Esteban Castro</strong> 
-                        </a>
-                    </div>
-                    <div className="mt-3">
-                        <a href="https://www.linkedin.com/in/azariel-moreno-4267ba254/">
-                            <strong>Ingrid Apellido</strong> 
                         </a>
                     </div>
                     <div className="mt-3">

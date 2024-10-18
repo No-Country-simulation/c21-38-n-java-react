@@ -1,14 +1,23 @@
 export const Lista = ({ nombreCampo, tipo, isImput }) => {
     return (
         <li className="flex flex-col mt-9">
-            {isImput ? (
+            {tipo === "textarea" ? (
+                <textarea
+                    id={nombreCampo}
+                    name={nombreCampo}
+                    placeholder={`Ingresa ${nombreCampo}`}
+                    className="w-80 pl-5 h-auto py-2 rounded-2xl text-lg mt-1 border focus:outline-none focus:border-orange"
+                    rows="4"
+                    required
+                ></textarea>
+            ) : isImput ? (
                 tipo === "file" ? (
-                    <div className=" relative  rounded-2xl text-lg  focus:outline-none curso focus:border-orange">
+                    <div className="relative rounded-2xl text-lg focus:outline-none focus:border-orange">
                         <input
                             type="file"
                             id={nombreCampo}
                             name={nombreCampo}
-                            className="absolute inset-0 w-full  opacity-0 cursor-pointer "
+                            className="absolute inset-0 w-full opacity-0 cursor-pointer"
                             required
                         />
                         <button

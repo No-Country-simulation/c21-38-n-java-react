@@ -6,5 +6,6 @@ export const camposMascota = [
     { nombreCampo: "Genero", tipo: "text", isImput: 0 },
     { nombreCampo: "Tamaño", tipo: "text", isImput: 1 },
     { nombreCampo: "Estado de salud", tipo: "text", isImput: 1 },
+    { nombreCampo: "Descripcion", tipo: "textarea", IsTextarea:1 },
     { nombreCampo: "Foto", tipo: "file", isImput: 1 }
 ];

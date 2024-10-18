@@ -3,7 +3,7 @@ import { Nav } from "../../Nav"
 import { preguntasAdoptante,preguntasVeterinaria } from "./PreguntasUsuario";
 import { useState } from "react";
 
-export const UserOrShelter = ({photo}) =>{
+export const UserOrShelter = ({photo, titulo}) =>{
     const [isFormActive, setIsFormActive] = useState(false);
     const [isAdoptante, setIsAdoptante] = useState(true);
 
@@ -28,7 +28,7 @@ export const UserOrShelter = ({photo}) =>{
 
             </div>
 
-            {isFormActive && (<Formulario titulo={"Editar usuario"} preguntas={isAdoptante? preguntasAdoptante : preguntasVeterinaria} />)}
+            {isFormActive && (<Formulario titulo={titulo} preguntas={isAdoptante? preguntasAdoptante : preguntasVeterinaria} />)}
 
         </main>
     )

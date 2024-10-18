@@ -43,7 +43,7 @@ export const Mascotas = () => {
           <Mascota key={pet.name} pet={pet} reverse={index % 2 == 0 ? true : false}/>
         ))
       }
-      <a href="/huellitas" className="text-2xl font-semibold text-orange underline hover:scale-110 transition-all duration-200">{`>>>> Conoce muchos mas amigos que quieren estar con tigo!! <<<<`}</a>
+      <a href="/huellitas" className="text-2xl font-semibold text-orange underline hover:scale-110 transition-all duration-200">{`>>>> Conoce muchos mas amigos que quieren estar contigo!! <<<<`}</a>
     </div>
   )
 }

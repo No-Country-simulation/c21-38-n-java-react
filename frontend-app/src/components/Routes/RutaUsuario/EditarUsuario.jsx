@@ -3,6 +3,6 @@ import { UserOrShelter } from "./UserOrShelter";
 
 export const EditarUsuario = () =>{
     return(
-    <UserOrShelter photo="fondo5.jpg"/>
+    <UserOrShelter photo="fondo5.jpg" titulo="Editar usuario"/>
     )
 }
