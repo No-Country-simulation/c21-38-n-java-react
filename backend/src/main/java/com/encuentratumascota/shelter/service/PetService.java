@@ -1,5 +1,7 @@
 package com.encuentratumascota.shelter.service;
 
+import com.encuentratumascota.shelter.enums.Breed;
+import com.encuentratumascota.shelter.enums.Specie;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.repository.IPetRepository;
 import org.springframework.stereotype.Service;

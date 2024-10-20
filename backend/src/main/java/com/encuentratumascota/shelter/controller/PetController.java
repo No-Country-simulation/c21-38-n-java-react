@@ -6,6 +6,7 @@ import com.encuentratumascota.shelter.dto.response.DataListPetsDTO;
 import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
 import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
