@@ -9,13 +9,13 @@ public class BreedConverter implements AttributeConverter<Breed, String> {
 
     @Override
     public String convertToDatabaseColumn(Breed breed) {
-        return breed != null ? breed.getText() : null;
+        return breed != null ? breed.getName() : null;
     }
 
     @Override
     public Breed convertToEntityAttribute(String dbData) {
         for (Breed breed : Breed.values()) {
-            if (breed.getText().equalsIgnoreCase(dbData)) {
+            if (breed.getName().equalsIgnoreCase(dbData)) {
                 return breed;
             }
         }

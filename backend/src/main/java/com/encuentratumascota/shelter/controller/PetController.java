@@ -1,9 +1,10 @@
 package com.encuentratumascota.shelter.controller;
 
 import com.encuentratumascota.shelter.business.PetsBusiness;
-import com.encuentratumascota.shelter.dto.DataListPetsDTO;
-import com.encuentratumascota.shelter.dto.GeneralResponsDTO;
-import com.encuentratumascota.shelter.model.Pet;
+import com.encuentratumascota.shelter.dto.request.PetRequestDTO;
+import com.encuentratumascota.shelter.dto.response.DataListPetsDTO;
+import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
+import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,38 +16,36 @@ import java.util.Optional;
 @RequestMapping("/api/pets")
 public class PetController {
 
-	private final PetsBusiness petsBusiness;
+    private final PetsBusiness petsBusiness;
 
-	public PetController(PetsBusiness petsBusiness) {
-		this.petsBusiness = petsBusiness;
-	}
+    public PetController(PetsBusiness petsBusiness) {
+        this.petsBusiness = petsBusiness;
+    }
 
-	@GetMapping
-	public GeneralResponsDTO<List<Pet>> getPets() {
-		return this.petsBusiness.findPets();
-	}
+    @GetMapping
+    public GeneralResponsDTO<List<PetResponseDTO>> getPets() {
+        return this.petsBusiness.findActivePets();
+    }
 
-	@GetMapping("/{id}")
-	public GeneralResponsDTO<Pet> getPet(@PathVariable Long id) {
-		return this.petsBusiness.getPet(id);
-	}
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public GeneralResponsDTO<Optional<PetResponseDTO> > savePet(
+            @ModelAttribute PetRequestDTO pet,
+            @RequestParam("image") MultipartFile image) {
+        return petsBusiness.savePet(pet, image);
+    }
 
-	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public GeneralResponsDTO<Optional<Pet>> savePet(
-			@ModelAttribute Pet pet,
-			@RequestParam("image") MultipartFile image) {
-		return petsBusiness.savePet(pet, image);
-	}
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public GeneralResponsDTO<Optional<PetResponseDTO>> editPet(
+            @PathVariable Long id,
+            @ModelAttribute PetRequestDTO pet,
+            @RequestParam("image") MultipartFile image) {
+        return petsBusiness.editPet(id, pet, image);
+    }
 
-	@PutMapping("/{id}")
-	public Pet editPet(@PathVariable Long id, @RequestBody Pet pet) {
-		this.petsBusiness.editPet(id, pet);
-		return pet;
-	}
 
-	@GetMapping("/lists")
-	public GeneralResponsDTO<DataListPetsDTO> getLists() {
-		return this.petsBusiness.getLists();
-	}
+    @GetMapping("/lists")
+    public GeneralResponsDTO<DataListPetsDTO> getLists() {
+        return this.petsBusiness.getListDataPets();
+    }
 
 }

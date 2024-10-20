@@ -1,82 +1,128 @@
 package com.encuentratumascota.shelter.business;
 
-import com.encuentratumascota.shelter.dto.DataListPetsDTO;
-import com.encuentratumascota.shelter.dto.GeneralResponsDTO;
-import com.encuentratumascota.shelter.enums.Breed;
+import com.encuentratumascota.shelter.dto.request.PetRequestDTO;
+import com.encuentratumascota.shelter.dto.response.DataListPetsDTO;
+import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
+import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
 import com.encuentratumascota.shelter.enums.MessageResponseEnum;
-import com.encuentratumascota.shelter.enums.Specie;
+import com.encuentratumascota.shelter.enums.UserTypeImage;
+import com.encuentratumascota.shelter.model.ImageDebugging;
 import com.encuentratumascota.shelter.model.Pet;
+import com.encuentratumascota.shelter.service.ImageDebuggingService;
 import com.encuentratumascota.shelter.service.ImageUploadService;
 import com.encuentratumascota.shelter.service.PetService;
 import com.encuentratumascota.shelter.util.DataUtils;
+import mapper.PetMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class PetsBusiness {
 
     private final PetService petService;
+    private final PetMapper petMapper;
     private final ImageUploadService imageUploadService;
+    private final ImageDebuggingService imageDebuggingService;
 
-    public PetsBusiness(PetService petService,ImageUploadService imageUploadService) {
+
+    public PetsBusiness(PetService petService, PetMapper petMapper, ImageUploadService imageUploadService, ImageDebuggingService imageDebuggingService) {
         this.petService = petService;
+        this.petMapper = petMapper;
         this.imageUploadService = imageUploadService;
+        this.imageDebuggingService = imageDebuggingService;
     }
 
-    public GeneralResponsDTO<List<Pet>> findPets() {
-        List<Pet> pets = petService.findPets().stream().filter(Pet::isActiveStatus).collect(Collectors.toList());
-        if (!pets.isEmpty()) {
-            return DataUtils.buildResponse(MessageResponseEnum.PETS_FOUND_SUCCESSFUL, pets);
+    public GeneralResponsDTO<List<PetResponseDTO>> findActivePets() {
+        List<Pet> activePets = petService.findActivePets();
+        if (!activePets.isEmpty()) {
+            return DataUtils.buildResponse(MessageResponseEnum.PETS_FOUND_SUCCESSFUL, petMapper.petsToPetResponseDTOs(activePets));
         }
         return DataUtils.buildResponse(MessageResponseEnum.PETS_NOT_FOUND, new ArrayList<>());
     }
 
-	public GeneralResponsDTO<Pet> getPet(Long id) {
-		Optional<Pet> pet = petService.getPet(id);
-		if (pet.isPresent()) {
-			return DataUtils.buildResponse(MessageResponseEnum.PET_FOUND_SUCCESSFUL, pet.get());
-		}
-		return DataUtils.buildResponse(MessageResponseEnum.PET_NOT_FOUND, null);
-	}
-
-    public GeneralResponsDTO<Optional<Pet>> savePet(Pet pet,MultipartFile image) {
+    public GeneralResponsDTO<Optional<PetResponseDTO>> savePet(PetRequestDTO petRequest, MultipartFile image) {
+        Optional<PetResponseDTO> petResponse =  Optional.of(petMapper.petRequestDTOToPetResponseDTO(petRequest));
         try {
-            String code = DataUtils.generateCode();
-            String name = code + "-" + pet.getName();
-            System.out.println("El nombre es " + name);
-
-            File tempFile = File.createTempFile(code,code);
-            image.transferTo(tempFile);
-            String urlImg = imageUploadService.uploadImage(tempFile,name);
-            tempFile.delete();
-            pet.setImageProfile(urlImg);
+            Pet pet = petMapper.petRequestDTOToPet(petRequest);
+            this.saveImage(pet,image);
             pet.setActiveStatus(true);
-            Optional<Pet> result = this.petService.savePet(pet);
-            return DataUtils.buildResponse(MessageResponseEnum.PET_SAVED_SUCCESSFUL, result);
+            Optional<Pet> savedPet = this.petService.savePet(pet);
+            return savedPet.map(p -> DataUtils.buildResponse(MessageResponseEnum.PET_SAVED_SUCCESSFUL, Optional.of(petMapper.petToPetResponseDTO(p))))
+                    .orElseGet(() -> DataUtils.buildResponse(MessageResponseEnum.PET_NOT_SAVED, Optional.empty()));
         } catch (Exception e) {
-            return DataUtils.buildResponseWithError(MessageResponseEnum.PET_NOT_SAVED, e.getMessage(), Optional.of(pet));
+            return DataUtils.buildResponseWithError(MessageResponseEnum.PET_NOT_SAVED, e.getMessage(), petResponse);
         }
     }
 
 
-    public Pet editPet(Long id, Pet pet) {
-        this.petService.editPet(id, pet);
-        return pet;
+    public GeneralResponsDTO<Optional<PetResponseDTO>> editPet(Long id, PetRequestDTO petRequest, MultipartFile image) {
+        try {
+            Optional<Pet> petToEdit = petService.findPet(id);
+            if (petToEdit.isPresent()) {
+                Pet pet = petMapper.petRequestDTOToPet(petRequest);
+                pet.setId(petToEdit.get().getId());
+                pet.setActiveStatus(true);
+                pet.setImageName(petToEdit.get().getImageName());
+                pet.setImageProfile(petToEdit.get().getImageProfile());
+                if(!image.isEmpty()){
+                    this.updateImage(pet, image);
+                }
+                Optional<Pet> updatedPet = petService.savePet(pet);
+                return updatedPet.map(p -> DataUtils.buildResponse(MessageResponseEnum.PET_UPDATED_SUCCESSFUL, Optional.of(petMapper.petToPetResponseDTO(p))))
+                        .orElseGet(() -> DataUtils.buildResponse(MessageResponseEnum.PET_NOT_UPDATED, Optional.empty()));
+            }
+            return DataUtils.buildResponse(MessageResponseEnum.PET_NOT_FOUND, Optional.empty());
+        } catch (Exception e) {
+            return DataUtils.buildResponseWithError(MessageResponseEnum.PET_NOT_UPDATED, e.getMessage(), Optional.empty());
+        }
     }
 
-    public GeneralResponsDTO<DataListPetsDTO> getLists() {
+
+    public GeneralResponsDTO<DataListPetsDTO> getListDataPets() {
         DataListPetsDTO result = new DataListPetsDTO();
-        result.setBreeds(Breed.getAllBreedData());
-        result.setSpecies(Specie.getAllSpecieData());
+        result.setBreeds(DataUtils.getAllBreedData());
+        result.setSpecies(DataUtils.getAllSpecieData());
         result.setSize(DataUtils.generateListDataSize());
         result.setGender(DataUtils.generateListDataGender());
         return DataUtils.buildResponse(MessageResponseEnum.LISTS_DATA_PETS_FOUND_SUCESSFUL, result);
+    }
+
+    private void saveImageDebugging(String url, String name, String userTypeImage){
+        ImageDebugging imageDebugging = new ImageDebugging();
+        imageDebugging.setImageName(name);
+        imageDebugging.setUrlImage(url);
+        imageDebugging.setType(userTypeImage);
+        imageDebuggingService.saveImageDebugging(imageDebugging);
+    }
+
+    private void saveImage(Pet pet, MultipartFile image) throws IOException {
+        String code = DataUtils.generateCode();
+        String name = code + "-" + pet.getName();
+        File tempFile = File.createTempFile(code,name);
+        image.transferTo(tempFile);
+        pet.setImageProfile(imageUploadService.uploadImage(tempFile,name));
+        pet.setImageName(name);
+        tempFile.delete();
+    }
+
+    private void updateImage(Pet pet, MultipartFile image) throws IOException {
+        String code = DataUtils.generateCode();
+        String name = code + "-" + pet.getName();
+        File tempFile = File.createTempFile(code,code);
+        image.transferTo(tempFile);
+        String url = imageUploadService.uploadImage(tempFile,name);
+        if(!url.equals(pet.getImageProfile())){
+            pet.setImageName(name);
+            pet.setImageProfile(url);
+            this.saveImageDebugging(url,pet.getImageName(),UserTypeImage.PET.name());
+        }
+        tempFile.delete();
     }
 
 }

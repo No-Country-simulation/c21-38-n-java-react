@@ -1,4 +1,4 @@
-package com.encuentratumascota.shelter.dto;
+package com.encuentratumascota.shelter.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

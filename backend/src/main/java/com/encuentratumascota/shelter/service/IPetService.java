@@ -7,11 +7,7 @@ import java.util.Optional;
 
 public interface IPetService {
 
-    public List<Pet> findPets();
-    public Optional<Pet> getPet(Long id);
+    public List<Pet> findActivePets();
     public Optional<Pet> savePet(Pet pet);
-    public void editPet(Long id, Pet pet);
-    public Pet findPet(Long id);
-    public void adoptPet(Long id);
-
+    public Optional<Pet> findPet(Long id);
 }

@@ -1,17 +1,16 @@
 package com.encuentratumascota.shelter.enums;
 
-public enum Specie {
+public enum CivilStatus {
 
-    DOG("Perro"),
-    CAT("Gato");
+    SINGLE("Soltero"),
+    MARRIED("Casado"),
+    FREE_UNION("Unión Libre");
 
     private String text;
-    Specie(String text){
+    CivilStatus(String text){
         this.text = text;
     }
     public String getText(){
         return text;
     }
-
-
 }
