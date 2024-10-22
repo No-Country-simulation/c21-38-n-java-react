@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Pets } from './components/Routes/Pets.jsx'
 import App from './App.jsx'
 import './index.css'
 import { Home } from './components/Home.jsx'
@@ -11,6 +10,7 @@ import { Login } from './components/Routes/Login.jsx'
 import { RegistroMascota } from './components/Routes/RutaMascotas/RegistroMascota.jsx'
 import { EditarUsuario } from './components/Routes/RutaUsuario/EditarUsuario.jsx'
 import { EditarMascota } from './components/Routes/RutaMascotas/EditarMascota.jsx'
+import { Pets } from './components/Routes/mascotas/Pets.jsx'
 import { MiPerfil } from './components/Routes/Pefil/MiPerfil.jsx'
 
 const router=createBrowserRouter(
