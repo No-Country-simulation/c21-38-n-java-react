@@ -1,24 +1,30 @@
 package com.encuentratumascota.shelter.controller;
 
+import com.encuentratumascota.shelter.business.UserBusiness;
 import com.encuentratumascota.shelter.dto.request.LoginDTO;
 import com.encuentratumascota.shelter.dto.request.UserRegisterDTO;
+import com.encuentratumascota.shelter.dto.response.DataListUsersDTO;
+import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
 import com.encuentratumascota.shelter.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class UserController {
 
     private final AuthService service;
+
+    @Autowired
+    private final UserBusiness userBusiness;
+
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO dto) {
@@ -34,7 +40,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/register")
+    @PostMapping("/adopter")
     public ResponseEntity<?> register(@RequestBody UserRegisterDTO dto) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
@@ -44,4 +50,13 @@ public class AuthController {
                     .body("{\"error\": \"Error registering user\"}");
         }
     }
+
+
+    @GetMapping("/lists")
+        public GeneralResponsDTO<DataListUsersDTO> getLists() {
+            return this.userBusiness.getListDataUsers();
+        }
+
+
+
 }

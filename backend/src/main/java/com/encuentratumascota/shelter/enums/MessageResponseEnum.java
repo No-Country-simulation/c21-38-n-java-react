@@ -9,10 +9,10 @@ public enum MessageResponseEnum {
 	PET_UPDATED_SUCCESSFUL(200,"Los datos de la mascota fueron atualizados exitosamente"),
 	PET_NOT_UPDATED(400,"Error al intentar actualizar los datos de la mascota"),
 	PET_FOUND_SUCCESSFUL(200, "Mascota encontrada con éxito."),
-	LISTS_DATA_PETS_FOUND_SUCESSFUL(200,"El listado de datos para mascotas fue obtenido con éxito"),
-	PET_NOT_FOUND(404, "No se encontró la mascota con el Id proporcionado."),
-	PET_UPDATED_SUCCESSFUL(200, "Mascota editada correctamente."),
-	PET_NOT_UPDATED(404, "No se pudo editar la mascota solicitada");
+	LISTS_DATA_PETS_FOUND_SUCCESSFUL(200,"El listado de datos para mascotas fue obtenido con éxito"),
+	LISTS_DATA_USERS_FOUND_SUCCESSFUL(200,"El listado de datos para usuarios fue obtenido con éxito"),
+
+	PET_NOT_FOUND(404, "No se encontró la mascota con el Id proporcionado.");
 
 	private Integer code;
 	private String message;
