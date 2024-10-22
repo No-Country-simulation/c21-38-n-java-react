@@ -1,6 +1,6 @@
 package com.encuentratumascota.shelter.service;
 
-import com.encuentratumascota.shelter.dto.ImageResponseDTO;
+import com.encuentratumascota.shelter.dto.response.ImageResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -39,8 +39,8 @@ public class ImageUploadService {
             HttpEntity responseEntity = response.getEntity();
             String jsonResponse = EntityUtils.toString(responseEntity);
             ObjectMapper objectMapper = new ObjectMapper();
-            ImageResponseDTO result = objectMapper.readValue(jsonResponse, ImageResponseDTO.class);
-           return result.getData().getUrl();
+            return objectMapper.readValue(jsonResponse, ImageResponseDTO.class).getData().getUrl();
+
         }
     }
 }

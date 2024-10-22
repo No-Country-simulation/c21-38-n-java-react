@@ -1,8 +1,9 @@
 package com.encuentratumascota.shelter.service;
 
+import com.encuentratumascota.shelter.enums.Breed;
+import com.encuentratumascota.shelter.enums.Specie;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.repository.IPetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,46 +12,29 @@ import java.util.Optional;
 @Service
 public class PetService implements IPetService {
 
-    @Autowired
-    private IPetRepository petRepository;
+    private final IPetRepository petRepository;
 
-    @Override
-    public List<Pet> findPets() {
-        return this.petRepository.findByActiveStatus(true);
+    public PetService(IPetRepository petRepository) {
+        this.petRepository = petRepository;
+
     }
 
     @Override
-    public Optional<Pet> getPet(Long id) {
-        return this.petRepository.findById(id);
+    public List<Pet> findActivePets() {
+        return petRepository.findByActiveStatus(true);
     }
+
 
     @Override
     public Optional<Pet> savePet(Pet pet) {
         return Optional.of(this.petRepository.save(pet));
-
     }
+
 
     @Override
-    public void editPet(Long id, Pet pet){
-        Pet petToEdit = this.findPet(id);
-        this.petRepository.save(pet);
+    public Optional<Pet> findPet(Long id) {
+        return petRepository.findById(id);
     }
 
-    @Override
-    public Pet findPet(Long id) {
-        return this.petRepository.findById(id)
-                // no devolver el error (Corregir)
-                .orElseThrow(() -> new RuntimeException("No se encontró a la mascota con el Id: " + id + "."));
-    }
-
-    @Override
-    public void adoptPet(Long id) {
-        // asociar a la mascota al futuro duenio
-        Pet pet = this.findPet(id);
-        pet.setActiveStatus(!pet.isActiveStatus());
-        this.petRepository.save(pet);
-    }
-
-    // agregar metodo booleano findPet()
 
 }

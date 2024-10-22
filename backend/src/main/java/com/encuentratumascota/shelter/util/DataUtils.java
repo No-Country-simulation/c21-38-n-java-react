@@ -1,12 +1,17 @@
 package com.encuentratumascota.shelter.util;
 
-import com.encuentratumascota.shelter.dto.DataDTO;
-import com.encuentratumascota.shelter.dto.GeneralResponsDTO;
+import com.encuentratumascota.shelter.dto.response.DataListDTO;
+import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
+import com.encuentratumascota.shelter.enums.Breed;
+import com.encuentratumascota.shelter.enums.CivilStatus;
 import com.encuentratumascota.shelter.enums.MessageResponseEnum;
+import com.encuentratumascota.shelter.enums.Specie;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DataUtils {
 
@@ -34,19 +39,56 @@ public class DataUtils {
 		return code.toString();
 	}
 
-	public static List<DataDTO> generateListDataSize() {
-		List<DataDTO> result = new ArrayList<>();
-		result.add(new DataDTO("P","Pequeño"));
-		result.add(new DataDTO("M","Mediano"));
-		result.add(new DataDTO("G","Grande"));
+	public static List<DataListDTO> generateListDataSize() {
+		List<DataListDTO> result = new ArrayList<>();
+		result.add(new DataListDTO("P","Pequeño"));
+		result.add(new DataListDTO("M","Mediano"));
+		result.add(new DataListDTO("G","Grande"));
 		return  result;
 	}
 
-	public static List<DataDTO> generateListDataGender() {
-		List<DataDTO> result = new ArrayList<>();
-		result.add(new DataDTO("H","Hembra"));
-		result.add(new DataDTO("M","Macho"));
+	public static List<DataListDTO> generateListDataGender() {
+		List<DataListDTO> result = new ArrayList<>();
+		result.add(new DataListDTO("H","Hembra"));
+		result.add(new DataListDTO("M","Macho"));
 		return  result;
 	}
+
+	public static Breed findBreedByName(String name) {
+		return Arrays.stream(Breed.values())
+				.filter(breed -> breed.getName().equalsIgnoreCase(name))
+				.findFirst()
+				.orElseThrow(() -> new IllegalArgumentException("Breed not found: " + name));
+	}
+
+	public static List<DataListDTO> getAllBreedData() {
+		return Arrays.stream(Breed.values())
+				.map(breed -> new DataListDTO(breed.name(), breed.getName()))
+				.collect(Collectors.toList());
+	}
+
+	public static List<DataListDTO> getAllUserTypes() {
+		return Arrays.stream(CivilStatus.values())
+				.map(breed -> {
+					DataListDTO dataListDTO = new DataListDTO();
+					dataListDTO.setId(breed.name());
+					dataListDTO.setName(breed.getText());
+					return dataListDTO;
+				})
+				.collect(Collectors.toList());
+	}
+
+	public static List<DataListDTO> getAllSpecieData() {
+		return Arrays.stream(Specie.values())
+				.map(specie -> {
+					DataListDTO dataListDTO = new DataListDTO();
+					dataListDTO.setId(specie.name());
+					dataListDTO.setName(specie.getText());
+					return dataListDTO;
+				})
+				.collect(Collectors.toList());
+	}
+
+
 
 }

@@ -2,22 +2,19 @@ package com.encuentratumascota.shelter.model;
 
 import com.encuentratumascota.shelter.converter.BreedConverter;
 import com.encuentratumascota.shelter.converter.SpecieConverter;
+import com.encuentratumascota.shelter.enums.Breed;
+import com.encuentratumascota.shelter.enums.Specie;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
-
-import com.encuentratumascota.shelter.enums.Breed;
-import com.encuentratumascota.shelter.enums.Specie;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "pets")
 @Entity
 public class Pet {
@@ -65,6 +62,11 @@ public class Pet {
     @Length(max = 250, message = "La imagen de perfil no puede contener más de 250 caracteres")
     private String imageProfile;
 
+    @NotNull(message = "El nombre de la imagen no puede ser nulo")
+    @NotBlank(message = "El nombre de la imagen no puede estar vacío")
+    @Length(max = 100, message = "El nombre de la imagen no puede contener más de 100 caracteres")
+    private String imageName;
+
     @NotBlank(message = "El tamaño no puede estar vacío")
     @NotNull(message = "El tamaño no puede ser nulo")
     @Pattern(regexp = "[PpMmGg]", message = "El tamaño solo puede ser 'P' (pequeño), 'M' (mediano) o 'G' (grande)")
@@ -72,14 +74,13 @@ public class Pet {
 
     private boolean activeStatus;
 
-    public String getSpecie() {
+    public @NotNull(message = "Se dede elegir una especie") String getSpecie() {
         return specie != null ? specie.getText() : null;
     }
 
     public String getBreed() {
         if (breed != null) {
-            String breedText = breed.getText().replace("_", " ");
-            return capitalizeWords(breedText);
+            return breed.getName();
         }
         return null;
     }
@@ -102,16 +103,6 @@ public class Pet {
         return null;
     }
 
-    private String capitalizeWords(String text) {
-        String[] words = text.split(" ");
-        StringBuilder capitalizedText = new StringBuilder();
-        for (String word : words) {
-            capitalizedText.append(Character.toUpperCase(word.charAt(0)))
-                    .append(word.substring(1).toLowerCase())
-                    .append(" ");
-        }
-        return capitalizedText.toString().trim();
-    }
 
 }
 
