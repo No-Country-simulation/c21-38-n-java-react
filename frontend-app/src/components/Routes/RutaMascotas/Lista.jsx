@@ -1,42 +1,38 @@
 import { useEffect, useState } from "react";
 
 export const Lista = ({ nombreCampo, tipo, isImput }) => {
-  const optionsEspecie = [
-    { name: "Perro", value: "DOG" },
-    { name: "Gato", value: "CAT" }
-  ]
-
-  const optionsRaza = {
-    "CAT": ["Persa", "Muchi", "Bles"],
-    "DOG": ["Border Collie", "Pitbull", "Dalmata", "Pincher", "Rodwailler"]
-  }
-
-  const optionsGender = [
-    { name: "Macho", value: "M" },
-    { name: "Hembra", value: "H" },
-  ]
-
-  const optionsSize = [
-    { name: "Pequeño", value: "P" },
-    { name: "Mediano", value: "M" },
-    { name: "Grande", value: "G" },
-
-  ]
 
 
-  const [listEspecies, setListEspecies] = useState([])
   const [valueEspecie, setValueEspecie] = useState("")
   const [controlRaza, setControlRaza] = useState(false)
+  const [species, setSpecies] = useState([])
+  const [breeds, setBreeds] = useState([])
+  const [sizes, setSizes] = useState([])
+  const [genders, setGenders] = useState([])
 
   const handleChangeEspecie = (e) => {
     const value = e.target.value
     setValueEspecie(value)
-    setListEspecies(optionsRaza[value])
     setControlRaza(true)
   }
 
   useEffect(() => {
+    const getPetsList = async () => {
+      try {
+        const response = await fetch('https://c21-38-n-java-react-production.up.railway.app/api/pets/lists')
+        const data = await response.json()
+        setSpecies(data.body.species)
+        setBreeds(data.body.breeds)
+        setSizes(data.body.size)
+        setGenders(data.body.gender)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getPetsList()
+  }, [])
 
+  useEffect(() => {
   }, [valueEspecie])
 
   return (
@@ -85,8 +81,8 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
                 {nombreCampo}
               </option>
               {
-                optionsEspecie.map(opt => (
-                  <option key={opt.name} value={opt.value}>{opt.name}</option>
+                species.map(opt => (
+                  <option key={opt.name} value={opt.id}>{opt.name}</option>
                 ))
               }
             </select>
@@ -102,9 +98,8 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
                 {nombreCampo}
               </option>
               {
-
-                listEspecies.map(opt => (
-                  <option key={opt} value={opt}>{opt}</option>
+                breeds.map(opt => (
+                  <option key={opt} value={opt.id}>{opt.name}</option>
                 ))
               }
             </select>
@@ -122,9 +117,8 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
                 {nombreCampo}
               </option>
               {
-
-                optionsGender.map(opt => (
-                  <option key={opt.name} value={opt.value}>{opt.name}</option>
+                genders.map(opt => (
+                  <option key={opt.name} value={opt.id}>{opt.name}</option>
                 ))
               }
             </select>
@@ -142,9 +136,8 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
                 {nombreCampo}
               </option>
               {
-
-                optionsSize.map(opt => (
-                  <option key={opt.name} value={opt.value}>{opt.name}</option>
+                sizes.map(opt => (
+                  <option key={opt.name} value={opt.id}>{opt.name}</option>
                 ))
               }
             </select>

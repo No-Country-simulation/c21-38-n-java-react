@@ -2,18 +2,16 @@ import {Lista} from "./Lista.jsx"
 import { Nav } from "../../Nav.jsx";
 import { camposMascota } from "./camposMascota.js";
 import { createPet } from "../../../store/api/createMascota.js";
+import { useNavigate } from "react-router-dom";
 import { convertImageToWebP } from "../../../utils/webp.js";
 
 export const CrearFormulario = ({title, photo}) => {
+    const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         
-        // No usar Object.fromEntries, obtener directamente el FormData
-        const formData = new FormData(event.target);  // Obtener FormData desde el formulario
-        const originalImage = formData.get('Foto');
-        const webpImage = await convertImageToWebP(originalImage);
-        // Crear un objeto con los datos del FormData
+        const formData = new FormData(event.target);
         const fields = {
             "Tamaño": formData.get("Tamaño"),
             "Genero": formData.get("Genero"),
@@ -23,12 +21,14 @@ export const CrearFormulario = ({title, photo}) => {
             "Especie": formData.get("Especie"),
             "Descripción": formData.get("Descripción"),
             "Edad": formData.get("Edad"),
-            "Foto": webpImage  // Aquí obtienes el archivo
+            "Foto": formData.get("Foto") 
         };
     
-        // Enviar los datos
         const response = await createPet(fields);
         console.log(response);
+        if (response.code === 200)  {
+            navigate("/")
+        }
     };
 
     return (

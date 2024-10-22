@@ -12,9 +12,8 @@ export const Mascotas = () => {
   useEffect(() => {
     const getListPets = async () => {
       try {
-        const response = await fetch('https://c21-38-n-java-react.onrender.com/api/pets')
+        const response = await fetch('https://c21-38-n-java-react-production.up.railway.app/api/pets')
         const data = await response.json()
-        console.log(data.body)
         setPets(data.body.slice(0, 4))
         setPets(Array.isArray(data.body) ? data.body.slice(0, 4) : []);
         
