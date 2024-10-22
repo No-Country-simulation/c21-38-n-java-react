@@ -3,10 +3,10 @@ package com.encuentratumascota.shelter.business;
 import com.encuentratumascota.shelter.dto.request.PetRequestDTO;
 import com.encuentratumascota.shelter.dto.response.DataListPetsDTO;
 import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
-import com.encuentratumascota.shelter.enums.Breed;
 import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
 import com.encuentratumascota.shelter.enums.MessageResponseEnum;
-import com.encuentratumascota.shelter.enums.Specie;
+import com.encuentratumascota.shelter.enums.UserTypeImage;
+import com.encuentratumascota.shelter.model.ImageDebugging;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.service.ImageDebuggingService;
 import com.encuentratumascota.shelter.service.ImageUploadService;
@@ -90,7 +90,7 @@ public class PetsBusiness {
         result.setSpecies(DataUtils.getAllSpecieData());
         result.setSize(DataUtils.generateListDataSize());
         result.setGender(DataUtils.generateListDataGender());
-        return DataUtils.buildResponse(MessageResponseEnum.LISTS_DATA_PETS_FOUND_SUCESSFUL, result);
+        return DataUtils.buildResponse(MessageResponseEnum.LISTS_DATA_PETS_FOUND_SUCCESSFUL, result);
     }
 
     private void saveImageDebugging(String url, String name, String userTypeImage){
@@ -120,7 +120,7 @@ public class PetsBusiness {
         if(!url.equals(pet.getImageProfile())){
             pet.setImageName(name);
             pet.setImageProfile(url);
-            this.saveImageDebugging(url,pet.getImageName(),UserTypeImage.PET.name());
+            this.saveImageDebugging(url,pet.getImageName(), UserTypeImage.PET.name());
         }
         tempFile.delete();
     }
