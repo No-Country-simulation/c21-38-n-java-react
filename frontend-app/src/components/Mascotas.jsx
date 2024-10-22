@@ -2,12 +2,12 @@ import { Mascota } from "./Mascota"
 import '../index.css'
 import { useEffect, useState } from "react"
 import 'ldrs/tailChase'
-import { mascotas } from "../store/mascotas"
+// import { mascotas } from "../store/mascotas"
 
 export const Mascotas = () => {
 
-  // const [pets, setPets] = useState([])
-  const [pets, setPets] = useState(mascotas.slice(0, 4))
+  const [pets, setPets] = useState([])
+  // const [pets, setPets] = useState(mascotas.slice(0, 4))
 
   useEffect(() => {
     const getListPets = async () => {
@@ -43,7 +43,7 @@ export const Mascotas = () => {
           <Mascota key={pet.name} pet={pet} reverse={index % 2 == 0 ? true : false}/>
         ))
       }
-      <a href="/huellitas" className="text-2xl font-semibold text-orange underline hover:scale-110 transition-all duration-200">{`>>>> Conoce muchos mas amigos que quieren estar con tigo!! <<<<`}</a>
+      <a href="/huellitas" className="text-2xl font-semibold text-orange underline hover:scale-110 transition-all duration-200">{`>>>> Conoce muchos mas amigos que quieren estar contigo!! <<<<`}</a>
     </div>
   )
 }

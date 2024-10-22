@@ -21,7 +21,7 @@ export const Header=()=>{
     }, [])
 
     return(
-        <header className="flex-col justify-center items-center"> 
+        <header className="flex-col justify-center items-center relative"> 
             <div className="flex-col justify-center items-center relative">
                 <div className={`w-full flex justify-center z-50 transition-all duration-200 ${scrollPorcent > 1.1 ? "fixed mt-0" : "mt-7 absolute"}`}>
                     <Nav></Nav>
@@ -34,6 +34,7 @@ export const Header=()=>{
                 lo que significa la conexión verdadera.<br /> Al elegir adoptar, no solo estás salvando 
                 una vida, estás creando un vínculo de confianza, alegria, cuidado , y sobre todo <strong className="text-[#F39C12] text-5xl absolute transform -translate-y-2 translate-x-3">amor</strong> <br />
                 </p>
+            
             </div>
         </header>
     )

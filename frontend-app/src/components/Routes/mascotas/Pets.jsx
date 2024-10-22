@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import 'ldrs/tailChase'
-import { mascotas } from "../../store/mascotas"
-import { Pet } from "./Pet"
+// import { mascotas } from "../../../store/mascotas"
+import { Pet } from "./components/Pet"
 
 export const Pets = () => {
 
-  // const [listPets, setListPets] = useState([])
-  const [listPets, setListPets] = useState(mascotas)
+  const [listPets, setListPets] = useState([])
+  // const [listPets, setListPets] = useState(mascotas)
 
   useEffect(() => {
 

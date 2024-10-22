@@ -23,9 +23,9 @@ export const DialogPet = () => {
             className="w-full h-full bg-transparent backdrop-blur-md brightness-80"></div>
           <div
             onClick={() => console.log("dig")}
-            className="absolute w-[70%] h-[80%] bg-colorBlue border-4 border-orange rounded-3xl flex flex-col justify-center items-center shadow-black">
+            className="absolute w-[70%] h-[80%] backPet border-4 border-orange rounded-3xl flex flex-col justify-center items-center shadow-black">
 
-            <div className="flex flex-row justify-center items-center">
+            <div className="flex flex-row h-full py-5 justify-between items-center">
               <div className="relative w-[400px] h-[500px] rounded-imagePet">
                 <div className="absolute top-0 rounded-backImagePet w-[110%] h-[105%] z-110 -rotate-12 border-2 border-orange"></div>
                 <img
@@ -36,7 +36,7 @@ export const DialogPet = () => {
 
               </div>
 
-              <div className="w-[50%] p-10 flex flex-col gap-20">
+              <div className="w-[50%] h-full px-10 flex flex-col justify-between">
                 <div>
                   <h2 className="text-orange text-9xl">{infoPet.name}</h2>
                   <span className="text-5xl text-white mb-5">{infoPet.breed}</span>

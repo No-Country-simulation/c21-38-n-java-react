@@ -1,5 +1,5 @@
 import './Error.css'
-import {Nav} from "../Nav.jsx"
+import {Nav} from "../../Nav.jsx"
 
 export const Error = () => {
     return (
