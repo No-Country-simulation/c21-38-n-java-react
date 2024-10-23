@@ -11,7 +11,10 @@ public enum MessageResponseEnum {
 	PET_FOUND_SUCCESSFUL(200, "Mascota encontrada con éxito."),
 	LISTS_DATA_PETS_FOUND_SUCCESSFUL(200,"El listado de datos para mascotas fue obtenido con éxito"),
 	LISTS_DATA_USERS_FOUND_SUCCESSFUL(200,"El listado de datos para usuarios fue obtenido con éxito"),
-
+	SHELTER_SAVED_SUCCESSFUL(200,"El refugio fue registrado exitosamente"),
+	SHELTER_NOT_SAVED(400,"El refugio NO fue registrado"),
+	ADOPTER_SAVED_SUCCESSFUL(200,"El adoptante fue registrado exitosamente"),
+	ADOPTER_NOT_SAVED(400,"El adoptante NO fue registrado"),
 	PET_NOT_FOUND(404, "No se encontró la mascota con el Id proporcionado.");
 
 	private Integer code;

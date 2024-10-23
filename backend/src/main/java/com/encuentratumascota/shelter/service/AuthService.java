@@ -1,12 +1,12 @@
 package com.encuentratumascota.shelter.service;
 
-import com.encuentratumascota.shelter.dto.response.AuthDTO;
 import com.encuentratumascota.shelter.dto.request.LoginDTO;
 import com.encuentratumascota.shelter.dto.request.UserRegisterDTO;
+import com.encuentratumascota.shelter.dto.response.AuthDTO;
+import com.encuentratumascota.shelter.dto.response.RegisterUserDTO;
 import com.encuentratumascota.shelter.model.User;
 import com.encuentratumascota.shelter.repository.IUserRepository;
 import com.encuentratumascota.shelter.util.JwtUtil;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -64,14 +64,14 @@ public class AuthService implements IAuthService {
      * @throws Exception Si ocurre un error durante el proceso de registro.
      */
     @Override
-    @Transactional
-    public AuthDTO register(UserRegisterDTO register) throws Exception {
+    public RegisterUserDTO register(UserRegisterDTO register) throws Exception {
         try {
             User user = createUserFromRegistration(register);
             user = userRepository.save(user);
 
             String token = jwtUtil.generateToken(user);
-            return new AuthDTO(token);
+
+            return new RegisterUserDTO(user,token);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new Exception(e.getMessage());
