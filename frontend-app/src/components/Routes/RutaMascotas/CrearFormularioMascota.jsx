@@ -1,55 +1,66 @@
-import { Lista } from "./Lista.jsx";
-import { Nav } from "../../Nav.jsx";
-import { camposMascota } from "./camposMascota.js";
-import { useEffect, useState } from "react";
-import { Check } from "../../CheckPetAdd.jsx";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export const CrearFormulario = ({ title, photo }) => {
-    const [seeNotice, setSeeNotice] = useState("hidden");
+export const Formulario = ({ titulo, preguntas }) => {
+    // Estado para almacenar los datos del nuevo usuario
+    const [formData, setFormData] = useState({});
 
-
-    const handleSeeNotice = () => {
-        setSeeNotice("flex");
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Evita el comportamiento por defecto del formulario
 
-    useEffect(() => {
-        if (seeNotice === "flex") {
-            const timer = setTimeout(() => {
-                setSeeNotice("hidden"); 
-            }, 6000); 
+        try {
+            const response = await fetch("https://c21-38-n-java-react-production.up.railway.app/api/auth/adopter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData), // Envía los datos del formulario
+            });
 
-            return () => clearTimeout(timer);
+            if (!response.ok) {
+                throw new Error("Error al crear el usuario");
+            }
+
+            const data = await response.json();
+            console.log("Usuario creado:", data);
+            // Aquí puedes redirigir o mostrar un mensaje de éxito
+
+        } catch (error) {
+            console.error("Error al crear el usuario:", error);
+            // Manejo de errores
         }
-    }, [seeNotice]);
+    };
 
     return (
+        <form onSubmit={handleSubmit} className="bg-Blue/50 backdrop-blur-2xl h-full w-[50%] rounded-2xl px-52 text-Newhite flex flex-col justify-center mt-14 border-2 border-orange py-10">
+            <h1 className="text-3xl mb-9 font-medium flex justify-center">{titulo}</h1>
 
-
-            <div className="bg-Blue/50 backdrop-blur-2xl flex flex-col justify-center items-center mb-5 rounded-3xl ">
-                <h1 className="text-3xl text-orange font-medium">{title}</h1>
-
-                <div className="flex flex-col justify-center items-center">
-                    <div>
-                        {camposMascota.map((campo, index) => (
-                            <div className="flex" key={index}>
-                                <Lista nombreCampo={campo.nombreCampo} tipo={campo.tipo} isImput={campo.isImput} />
-                            </div>
-                        ))}
-                    </div>
-
-                    <button
-                        className="text-2xl text-Newhite mt-10 border rounded-3xl p-2 w-full hover:bg-Blue hover:scale-105 transition-all"
-                        onClick={handleSeeNotice}
-                    >
-                        {title}
-                    </button>
+            {preguntas.map((pregunta, index) => (
+                <div key={index} className="mb-6 text-lg">
+                    <label className="block text-lg font-medium">{pregunta.texto}</label>
+                    <input 
+                        type={pregunta.tipo} 
+                        name={pregunta.texto.toLowerCase().replace(/\s+/g, '')} // Crea un nombre para el input
+                        onChange={handleChange} // Agrega el manejador de cambios
+                        className="mt-1 block w-full p-2 border border-gray-300 text-Blue rounded-md" 
+                    />
                 </div>
-            <div className={`absolute flex justify-center w-full ${seeNotice}`}>
-                <Check />
-            </div>
-            </div>
+            ))} 
 
-
+            <button 
+                type="submit" 
+                className="w-full mt-9 text-xl border bg-Blue text-white p-2 rounded-md hover:bg-orange hover:text-Blue hover:scale-[101%]"
+            >
+                {titulo}
+            </button>
+        </form>
     );
 };
