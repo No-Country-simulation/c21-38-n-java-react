@@ -14,7 +14,7 @@ export const Nav = ({width="w-[70%]", shadow="shadow-lg"}) => {
       </ul>
 
       <ul>
-        <Link to="/login" className="text-3xl text-blue font-semibold">Login</Link>
+        <Link to="/RegistroMascota" className="text-2xl text-blue font-semibold">Agregar Mascota</Link>
       </ul>
 
     </nav>
