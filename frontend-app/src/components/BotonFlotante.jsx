@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { RiWhatsappFill } from "react-icons/ri";
-import { TbMessageChatbotFilled } from "react-icons/tb";
+
 import { IoCloseSharp } from "react-icons/io5";
 import { MdAddCircle } from "react-icons/md";
-import { Lista } from "./Routes/RutaMascotas/Lista";
+
 import { CrearFormulario } from "./Routes/RutaMascotas/CrearFormularioMascota";
 
 

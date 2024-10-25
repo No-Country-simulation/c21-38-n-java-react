@@ -3,72 +3,57 @@ import { Nav } from "../../Nav";
 import { MdModeEditOutline } from "react-icons/md";
 
 export const MiPerfil = () => {
-
     const [isEditing, setIsEditing] = useState(false);
 
-    
     const [userInfo, setUserInfo] = useState(() => {
         const savedUserInfo = localStorage.getItem("userInfo");
         return savedUserInfo
             ? JSON.parse(savedUserInfo)
             : {
-                nombre: "Nombre de Usuario",
-                email: "Usuario@gmail.com",
-                direccion: "Direccion 7756",
-                telefono: "2236979758",
-                /* 
-                    agregar campos: 
-
-                        "birthDate": "2024-10-24",
-                        "civilStatus": "SINGLE",
-                        "actualPets": 0,
-                        "familyMembers": 0,
-                        "adoptionReason": "string",
-                        "dailyTimeAvailable": 0,
-                        "houseType": "APARTMENT",
-                        "houseExtension": 0,
-                        "name": "string",
-                        "lastname": "string",
-                        "identificationType": "CC",
-                        "identificationNumber": 0,
-                        "email": "string",
-                        "password": "string",
-                        "cellphoneNumber": "string",
-                        "imageProfile": "string",
-                        "country": "string",
-                        "city": "string"
-
-                    */
+                    name: "Nombre de Usuario",
+                    lastName: "Espiñoza",
+                    email: "Usuario@gmail.com",
+                    country: "Direccion 7756",
+                    cellphoneNumber: "2236979758",
+                    birthDate: "2024-10-24",
+                    civilStatus: "SINGLE",
+                    actualPets: 0,
+                    familyMembers: 0,
+                    adoptionReason: "amo los animales",
+                    dailyTimeAvailable: 4,
+                    houseType: "APARTAMENT",
+                    houseExtension: 20,
+                    identificationType: "DNI",
+                    identificationNumber: 4056987,
+                    password: "holamundo",
+                    imageProfile: null,
+                    city: "mar del plata",
             };
     });
 
     const handleEditClick = async () => {
         if (isEditing) {
-            
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
-    
-            
+
             try {
                 const response = await fetch("https://c21-38-n-java-react-production.up.railway.app/api/auth/adopter", {
-                    method: "POST",  
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(userInfo),  
+                    body: JSON.stringify(userInfo),
                 });
-    
+
                 if (!response.ok) {
                     throw new Error("Error al enviar los datos al servidor");
                 }
-    
+
                 const data = await response.json();
                 console.log("Respuesta del servidor:", data);
-    
             } catch (error) {
                 console.error("Error al enviar los datos:", error);
             }
         }
-    
         setIsEditing(!isEditing);
     };
 
@@ -80,13 +65,32 @@ export const MiPerfil = () => {
         }));
     };
 
-
     useEffect(() => {
         const savedUserInfo = localStorage.getItem("userInfo");
         if (savedUserInfo) {
             setUserInfo(JSON.parse(savedUserInfo));
         }
     }, []);
+
+    // Definir un array de campos a mostrar y editar
+    const fields = [
+        { label: "Nombre", name: "name", type: "text" },
+        { label: "Apellido", name: "lastName", type: "text" },
+        { label: "Correo Electrónico", name: "email", type: "email" },
+        { label: "Dirección", name: "country", type: "text" },
+        { label: "Teléfono", name: "cellphoneNumber", type: "tel" },
+        { label: "Fecha de Nacimiento", name: "birthDate", type: "date" },
+        { label: "Estado Civil", name: "civilStatus", type: "text" },
+        { label: "Mascotas Actuales", name: "actualPets", type: "number" },
+        { label: "Miembros de la Familia", name: "familyMembers", type: "number" },
+        { label: "Razón para Adoptar", name: "adoptionReason", type: "text" },
+        { label: "Tiempo Diario Disponible", name: "dailyTimeAvailable", type: "number" },
+        { label: "Tipo de Vivienda", name: "houseType", type: "text" },
+        { label: "Extensión de la Vivienda", name: "houseExtension", type: "number" },
+        { label: "Tipo de Identificación", name: "identificationType", type: "text" },
+        { label: "Número de Identificación", name: "identificationNumber", type: "text" },
+        { label: "Ciudad", name: "city", type: "text" },
+    ];
 
     return (
         <section className="bg-Blue min-h-screen flex flex-col items-center h-full">
@@ -95,91 +99,55 @@ export const MiPerfil = () => {
                     <Nav width="full" shadow="0" />
                     <div className="w-96 h-96 bg-orange absolute ml-[72%] mt-24 rounded-full flex flex-col items-center">
                         <div className="w-56 mt-20">
-                            <img src="./../../../../public/images/usuario.svg" alt="" />
+                            <img src="./../../../../public/images/froma4.svg" alt="" />
                         </div>
                     </div>
                 </div>
 
                 <div className="w-full h-[80%] flex flex-col items-center mt-7">
                     <div className="flex">
-                      {/* Nombre del usuario */}
+                        {/* Nombre del usuario */}
                         {isEditing ? (
                             <input
                                 type="text"
-                                name="nombre"
-                                value={userInfo.nombre}
+                                name="name"
+                                value={userInfo.name}
                                 onChange={handleChange}
                                 className="mt-10 text-6xl border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-8 w-[45vh]"
                             />
                         ) : (
-                        <h1 className="mt-10 text-6xl">{userInfo.nombre}</h1>
+                            <h1 className="mt-10 text-6xl">{userInfo.name}</h1>
                         )}
-
                         <button
                             onClick={handleEditClick}
-                            className={`absolute  flex flex-col items-center hover:scale-105 text-Blue 
-                                ${isEditing ? "mt-12" : " mt-10"} 
-                                ${isEditing ? "ml-[70vh]" : " ml-[70vh]"}`}
+                            className={`absolute flex flex-col items-center hover:scale-105 text-Blue 
+                            ${isEditing ? "mt-12" : "mt-10"} ml-[70vh]`}
                         >
                             <MdModeEditOutline className="text-4xl" />
                             <p className="text-xl">{isEditing ? "Guardar" : "Editar"}</p>
                         </button>
                     </div>
-                    
-                    <div className="mt-14 flex">
-                        <div className="flex flex-col items-end text-4xl gap-7 mr-40">
-                            <p>Correo Electrónico :</p>
-                            <p>Dirección :</p>
-                            <p>Teléfono :</p>
-                        </div>
-                    
-                        <div className="flex flex-col items-start text-4xl gap-7">
-                          {/* Email */}
-                            {isEditing ? (
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={userInfo.email}
-                                    onChange={handleChange}
-                                    className="border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-3"
-                                />
-                            ) : (
-                                <p>{userInfo.email}</p>
-                            )}
 
-                          {/* Dirección */}
-                            {isEditing ? (
-                                <input
-                                    type="text"
-                                    name="direccion"
-                                    value={userInfo.direccion}
-                                    onChange={handleChange}
-                                    className="border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-3"
-                                />
-                            ) : (
-                                <p>{userInfo.direccion}</p>
-                            )}
-
-                          {/* Teléfono */}
-                            {isEditing ? (
-                                <input
-                                    type="tel"
-                                    name="telefono"
-                                    value={userInfo.telefono}
-                                    onChange={handleChange}
-                                    className="border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-3"
-                                />
-                            ) : (
-                                <p>{userInfo.telefono}</p>
-                            )}
-                        </div>
+                    {/* Renderizado dinámico de campos */}
+                    <div className="mt-14 flex flex-col gap-7">
+                        {fields.map((field) => (
+                            <div key={field.name} className="flex items-center">
+                                <p className="text-4xl mr-10">{field.label}:</p>
+                                {isEditing ? (
+                                    <input
+                                        type={field.type}
+                                        name={field.name}
+                                        value={userInfo[field.name] || ""}
+                                        onChange={handleChange}
+                                        className="border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-3 text-4xl"
+                                    />
+                                ) : (
+                                    <p className="text-4xl">{userInfo[field.name]}</p>
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </div>
-
-          {/* Resto del contenido */}
-            <div className="absolute w-[45vh] mr-[140vh] mt-[15vh]">
-                <img src="./../../../../public/images/Forma4.svg" alt="" />
             </div>
 
             <div className="mt-20 flex flex-col items-center w-full mb-28">

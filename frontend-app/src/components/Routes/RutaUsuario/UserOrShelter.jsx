@@ -28,7 +28,7 @@ export const UserOrShelter = ({photo, titulo}) =>{
 
             </div>
 
-            {isFormActive && (<Formulario titulo={titulo} preguntas={isAdoptante? preguntasAdoptante : preguntasVeterinaria} />)}
+            {isFormActive && (<Formulario titulo={titulo} preguntas={isAdoptante? preguntasAdoptante : preguntasVeterinaria} URL={isAdoptante ? "https://c21-38-n-java-react-production.up.railway.app/api/auth/adopter" : "https://c21-38-n-java-react-production.up.railway.app/api/auth/shelter"} />)}
 
         </main>
     )
