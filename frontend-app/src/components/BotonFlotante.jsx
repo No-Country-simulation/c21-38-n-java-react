@@ -77,13 +77,7 @@ export const BotonFlotante = () => {
 
             {/*Formulario */}
 
-            <div className={`bg-Blue rounded-2xl h-[90%] overflow-auto p-4 flex-col justify-center items-center ${isExpanded ? 'flex-col': 'hidden'}`} style={{transition: 'width 0.8s ease, height 0.8s ease, margin 0.8s ease'}}>
-                <form action="" className="flex w-full flex-col gap-3 justify-center items-center mt-5">
-                    <ul className="flex flex-col gap-7">
-                        <CrearFormulario title="Registrar Mascota"/>
-                    </ul>
-                </form>
-            </div>
+
 
             {showTitle && (
                 <div className={`border-2 border-orange text-[20px] flex justify-center items-center p-3 absolute w-[23.6vh] right-[8px] rounded-2xl bg-Blue text-orange transition-all duration-30000
