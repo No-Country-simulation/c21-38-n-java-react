@@ -1,21 +1,58 @@
 import { Link, useNavigate } from "react-router-dom"
 import { Nav } from "../Nav"
 import { useLogin } from "../../store/login/login"
+import { useState } from "react"
 
 export const Login = () => {
 
   const navigate = useNavigate()
-  const { initSession } = useLogin()
-  const handleSubmit = (e) => {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e, type) => {
+    const { name, value } = e.target;
+    let setValue = value
+    if (type === "number") {
+      setValue = parseInt(value)
+    }
+    setUserInfo((prevInfo) => ({
+      ...prevInfo,
+      [name]: setValue,
+    }));
+  };
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // const fields = Object.fromEntries(new window.FormData(e.target))
-    // const log = login(fields.email, fields.password)
-    // if (log.status === 200) {
-    initSession("refugio")
+    try {
+      const response = await fetch( "https://c21-38-n-java-react-production.up.railway.app/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      });
+      console.log(response)
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log("ingreso validado:", data);
+        navigate('/')
+        // Aquí puedes manejar la respuesta del servidor
+      } else {
+        console.error("Error al consultar usuario:", response.status);
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
     
-    navigate("/")
-    // }
-  }
+    }
+  };
+
+
+
+    //_______________________________
 
   return (
     <main className="h-screen bg-cover bg-center flex flex-col justify-center items-center" style={{ backgroundImage: `url('/public/images/gatowallpaper.jpg` }} >
@@ -33,6 +70,7 @@ export const Login = () => {
             type="email"
             id="email"
             required
+            onChange={(e) => handleChange(e)}
             className="mt-1 block w-full p-2 border border-gray-300 text-Blue rounded-md"
           />
         </div>
@@ -44,6 +82,7 @@ export const Login = () => {
             type="password"
             id="password"
             required
+            onChange={(e) => handleChange(e)}
             className="mt-1 block w-full p-2 border border-gray-300 text-Blue rounded-md"
           />
         </div>
