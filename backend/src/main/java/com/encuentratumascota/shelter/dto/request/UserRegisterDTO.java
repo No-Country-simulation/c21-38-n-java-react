@@ -11,4 +11,8 @@ public class UserRegisterDTO {
     String email;
     String password;
     UserRole role;
+    String cellphoneNumber;
+    String imageProfile;
+    String country;
+    String city;
 }

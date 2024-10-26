@@ -10,7 +10,6 @@ import com.encuentratumascota.shelter.enums.MessageResponseEnum;
 import com.encuentratumascota.shelter.enums.UserRole;
 import com.encuentratumascota.shelter.model.Adopter;
 import com.encuentratumascota.shelter.model.Shelter;
-import com.encuentratumascota.shelter.model.User;
 import com.encuentratumascota.shelter.service.AdopterService;
 import com.encuentratumascota.shelter.service.AuthService;
 import com.encuentratumascota.shelter.service.ShelterService;
@@ -62,6 +61,10 @@ public class UserController {
         userRegisterDTO.setEmail(adopterDTO.getEmail());
         userRegisterDTO.setPassword(adopterDTO.getPassword());
         userRegisterDTO.setRole(UserRole.ADOPTER);
+        userRegisterDTO.setCellphoneNumber(adopterDTO.getCellphoneNumber());
+        userRegisterDTO.setImageProfile(adopterDTO.getImageProfile());
+        userRegisterDTO.setCountry(adopterDTO.getCountry());
+        userRegisterDTO.setCity(adopterDTO.getCity());
         Adopter adopter = new Adopter();
         adopter.setName(adopterDTO.getName());
         adopter.setLastname(adopterDTO.getLastname());
@@ -73,14 +76,6 @@ public class UserController {
         adopter.setDailyTimeAvailable(adopterDTO.getDailyTimeAvailable());
         adopter.setHouseType(adopterDTO.getHouseType());
         adopter.setHouseExtension(adopterDTO.getHouseExtension());
-        User user = new User();
-        user.setEmail(userRegisterDTO.getEmail());
-        user.setRole(userRegisterDTO.getRole());
-        user.setPassword(userRegisterDTO.getPassword());
-        user.setCellphoneNumber(adopterDTO.getCellphoneNumber());
-        user.setImageProfile(adopterDTO.getImageProfile());
-        user.setCountry(adopterDTO.getCountry());
-        user.setCity(adopterDTO.getCity());
         try {
             RegisterUserDTO response = service.register(userRegisterDTO);
             adopter.setUser(response.getUser());
@@ -101,18 +96,15 @@ public class UserController {
         userRegisterDTO.setEmail(shelterDTO.getEmail());
         userRegisterDTO.setPassword(shelterDTO.getPassword());
         userRegisterDTO.setRole(UserRole.SHELTER);
+        userRegisterDTO.setCellphoneNumber(shelterDTO.getCellphoneNumber());
+        userRegisterDTO.setImageProfile(shelterDTO.getImageProfile());
+        userRegisterDTO.setCountry(shelterDTO.getCountry());
+        userRegisterDTO.setCity(shelterDTO.getCity());
         Shelter shelter = new Shelter();
         shelter.setName(shelterDTO.getName());
         shelter.setMaxCapacity(shelterDTO.getMaxCapacity());
         shelter.setLegalRegistration(shelterDTO.getLegalRegistration());
-        User user = new User();
-        user.setEmail(userRegisterDTO.getEmail());
-        user.setRole(userRegisterDTO.getRole());
-        user.setPassword(userRegisterDTO.getPassword());
-        user.setCellphoneNumber(shelterDTO.getCellphoneNumber());
-        user.setImageProfile(shelterDTO.getImageProfile());
-        user.setCountry(shelterDTO.getCountry());
-        user.setCity(shelterDTO.getCity());
+
         try {
             RegisterUserDTO response = service.register(userRegisterDTO);
             shelter.setUser(response.getUser());

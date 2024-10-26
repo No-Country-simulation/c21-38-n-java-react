@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +41,6 @@ public class User {
     private UserRole role;
 
     @NotBlank(message = "El número de celular no puede estar vacío")
-    @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "El número de celular debe ser un número válido (10 a 15 dígitos, puede incluir el símbolo + al inicio)")
     private String cellphoneNumber;
 
     private String imageProfile;

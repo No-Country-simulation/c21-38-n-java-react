@@ -96,11 +96,13 @@ public class AuthService implements IAuthService {
      */
     private User createUserFromRegistration(UserRegisterDTO register) {
         User user = new User();
-        //user.setName(register.getName());
-        //user.setLastName(register.getLastName());
         user.setEmail(register.getEmail());
         user.setPassword(passwordEncoder.encode(register.getPassword()));
         user.setRole(register.getRole());
+        user.setImageProfile(register.getImageProfile());
+        user.setCellphoneNumber(register.getCellphoneNumber());
+        user.setCity(register.getCity());
+        user.setCountry(register.getCountry());
 
         return user;
     }
