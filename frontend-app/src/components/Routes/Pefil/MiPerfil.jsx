@@ -94,7 +94,7 @@ export const MiPerfil = () => {
 
     return (
         <section className="bg-Blue min-h-screen flex flex-col items-center h-full">
-            <div className="w-[93%] h-[500px] bg-orange rounded-3xl">
+            <div className={`w-[93%] bg-orange rounded-3xl ${isEditing ? "h-[118.5vh]": "h-[95vh]"} transition-all`} >
                 <div className="mt-4">
                     <Nav width="full" shadow="0" />
                     <div className="w-96 h-96 bg-orange absolute ml-[72%] mt-24 rounded-full flex flex-col items-center">
@@ -105,19 +105,11 @@ export const MiPerfil = () => {
                 </div>
 
                 <div className="w-full h-[80%] flex flex-col items-center mt-7">
-                    <div className="flex">
-                        {/* Nombre del usuario */}
-                        {isEditing ? (
-                            <input
-                                type="text"
-                                name="name"
-                                value={userInfo.name}
-                                onChange={handleChange}
-                                className="mt-10 text-6xl border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-8 w-[45vh]"
-                            />
-                        ) : (
-                            <h1 className="mt-10 text-6xl">{userInfo.name}</h1>
-                        )}
+
+                    {/* Renderizado dinámico de campos */}
+                    <div className=" grid grid-cols-2 w-[80%] mr-80 gap-11 mt-24 border-4 border-Blue rounded-xl p-10 text-3xl ">
+
+                    <div className={`flex absolute ml-[33%] ${isEditing? "mt-[1%]" : "mt-[26%]"} transition-all `}>
                         <button
                             onClick={handleEditClick}
                             className={`absolute flex flex-col items-center hover:scale-105 text-Blue 
@@ -128,21 +120,19 @@ export const MiPerfil = () => {
                         </button>
                     </div>
 
-                    {/* Renderizado dinámico de campos */}
-                    <div className="mt-14 flex flex-col gap-7">
                         {fields.map((field) => (
                             <div key={field.name} className="flex items-center">
-                                <p className="text-4xl mr-10">{field.label}:</p>
+                                <p className=" mr-10">{field.label}:</p>
                                 {isEditing ? (
                                     <input
                                         type={field.type}
                                         name={field.name}
                                         value={userInfo[field.name] || ""}
                                         onChange={handleChange}
-                                        className="border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-3 text-4xl"
+                                        className="border-b-2 border-gray-400 focus:outline-none bg-Blue text-Newhite rounded-xl pl-3 "
                                     />
                                 ) : (
-                                    <p className="text-4xl">{userInfo[field.name]}</p>
+                                    <p>{userInfo[field.name]}</p>
                                 )}
                             </div>
                         ))}
