@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IAdopterRepository extends JpaRepository<Adopter, Long> {
+
+    Adopter findByUserEmail(String email);
+
 }

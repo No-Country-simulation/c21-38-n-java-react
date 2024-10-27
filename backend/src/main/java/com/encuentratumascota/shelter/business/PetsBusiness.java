@@ -6,13 +6,18 @@ import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
 import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
 import com.encuentratumascota.shelter.enums.MessageResponseEnum;
 import com.encuentratumascota.shelter.enums.UserTypeImage;
+import com.encuentratumascota.shelter.model.Adopter;
 import com.encuentratumascota.shelter.model.ImageDebugging;
 import com.encuentratumascota.shelter.model.Pet;
+import com.encuentratumascota.shelter.service.AdopterService;
 import com.encuentratumascota.shelter.service.ImageDebuggingService;
 import com.encuentratumascota.shelter.service.ImageUploadService;
 import com.encuentratumascota.shelter.service.PetService;
 import com.encuentratumascota.shelter.util.DataUtils;
+import com.encuentratumascota.shelter.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import mapper.PetMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,13 +34,17 @@ public class PetsBusiness {
     private final PetMapper petMapper;
     private final ImageUploadService imageUploadService;
     private final ImageDebuggingService imageDebuggingService;
+    private final AdopterService adopterService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
 
-    public PetsBusiness(PetService petService, PetMapper petMapper, ImageUploadService imageUploadService, ImageDebuggingService imageDebuggingService) {
+    public PetsBusiness(PetService petService, PetMapper petMapper, ImageUploadService imageUploadService, ImageDebuggingService imageDebuggingService, AdopterService adopterService) {
         this.petService = petService;
         this.petMapper = petMapper;
         this.imageUploadService = imageUploadService;
         this.imageDebuggingService = imageDebuggingService;
+        this.adopterService = adopterService;
     }
 
     public GeneralResponsDTO<List<PetResponseDTO>> findActivePets() {
@@ -123,6 +132,18 @@ public class PetsBusiness {
             this.saveImageDebugging(url,pet.getImageName(), UserTypeImage.PET.name());
         }
         tempFile.delete();
+    }
+
+    public GeneralResponsDTO<String> adopt(HttpServletRequest request, Long petId){
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            String token = request.getHeader("Authorization").substring(7);
+            String username = jwtUtil.getUsernameFromToken(token);
+            Optional<Adopter> adopter = adopterService.getByEmail(username);
+            Optional<Pet> pet = petService.findPet(petId);
+            return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED,"Adopción exitosa");
+        }
+        return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED,"Adopción fallida");
     }
 
 }

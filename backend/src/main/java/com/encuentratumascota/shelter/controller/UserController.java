@@ -76,6 +76,7 @@ public class UserController {
         adopter.setDailyTimeAvailable(adopterDTO.getDailyTimeAvailable());
         adopter.setHouseType(adopterDTO.getHouseType());
         adopter.setHouseExtension(adopterDTO.getHouseExtension());
+
         try {
             RegisterUserDTO response = service.register(userRegisterDTO);
             adopter.setUser(response.getUser());
@@ -104,7 +105,6 @@ public class UserController {
         shelter.setName(shelterDTO.getName());
         shelter.setMaxCapacity(shelterDTO.getMaxCapacity());
         shelter.setLegalRegistration(shelterDTO.getLegalRegistration());
-
         try {
             RegisterUserDTO response = service.register(userRegisterDTO);
             shelter.setUser(response.getUser());

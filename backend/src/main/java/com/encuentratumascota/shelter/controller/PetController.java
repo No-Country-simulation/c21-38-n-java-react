@@ -5,6 +5,7 @@ import com.encuentratumascota.shelter.dto.request.PetRequestDTO;
 import com.encuentratumascota.shelter.dto.response.DataListPetsDTO;
 import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
 import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,5 +48,11 @@ public class PetController {
     public GeneralResponsDTO<DataListPetsDTO> getLists() {
         return this.petsBusiness.getListDataPets();
     }
+
+    @PostMapping("/adopt")
+    public GeneralResponsDTO<String> adopt(HttpServletRequest request, Long petId) {
+        return this.petsBusiness.adopt(request, petId);
+    }
+
 
 }
