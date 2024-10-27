@@ -15,6 +15,9 @@ public enum MessageResponseEnum {
 	SHELTER_NOT_SAVED(400,"El refugio NO fue registrado"),
 	ADOPTER_SAVED_SUCCESSFUL(200,"El adoptante fue registrado exitosamente"),
 	ADOPTER_NOT_SAVED(400,"El adoptante NO fue registrado"),
+	ADOPTION_FAILED(400,"El proceso de adopción falló"),
+	ADOPTION_SUCCESSFUL(200,"El proceso de adopción fue exitoso"),
+
 	PET_NOT_FOUND(404, "No se encontró la mascota con el Id proporcionado.");
 
 	private Integer code;

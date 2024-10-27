@@ -68,9 +68,7 @@ public class AuthService implements IAuthService {
         try {
             User user = createUserFromRegistration(register);
             user = userRepository.save(user);
-
             String token = jwtUtil.generateToken(user);
-
             return new RegisterUserDTO(user,token);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -99,11 +97,10 @@ public class AuthService implements IAuthService {
         user.setEmail(register.getEmail());
         user.setPassword(passwordEncoder.encode(register.getPassword()));
         user.setRole(register.getRole());
-        user.setImageProfile(register.getImageProfile());
         user.setCellphoneNumber(register.getCellphoneNumber());
-        user.setCity(register.getCity());
+        user.setImageProfile(register.getImageProfile());
         user.setCountry(register.getCountry());
-
+        user.setCity(register.getCity());
         return user;
     }
 }

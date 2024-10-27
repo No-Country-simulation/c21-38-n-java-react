@@ -20,4 +20,10 @@ public class AdopterService implements IAdopterService {
     public Optional<Adopter> saveAdopter(Adopter adopter) {
         return Optional.of(iAdopterRepository.save(adopter));
     }
+
+    @Override
+    public Optional<Adopter> getByEmail(String email) {
+        return Optional.of(iAdopterRepository.findByUserEmail(email));
+    }
+
 }
