@@ -44,7 +44,6 @@ public class Adopter {
     private Integer actualPets;
 
     @NotNull(message = "El número de miembros de la familia no puede ser nulo")
-    @Min(value = 1, message = "El número de miembros de la familia debe ser al menos 1")
     @Column(name = "family_members")
     private Integer familyMembers;
 
