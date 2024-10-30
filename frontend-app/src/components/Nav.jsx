@@ -32,7 +32,7 @@ export const Nav = ({width="w-[70%]", shadow="shadow-lg"}) => {
             <Link to="/MiPerfil" className="text-2xl text-blue font-semibold">Perfil Refugio</Link>
           </ul>
           <ul>
-            <Link className="text-2xl text-blue font-semibold">Panel de Adopciones</Link>
+            <Link to="/PanelAdopciones" className="text-2xl text-blue font-semibold">Panel de Adopciones</Link>
           </ul>
           <ul>
             <Link className="text-2xl text-blue font-semibold" onClick={() => closeSession()}>Salir</Link>
@@ -50,7 +50,7 @@ export const Nav = ({width="w-[70%]", shadow="shadow-lg"}) => {
             <Link to="/MiPerfil" className="text-2xl text-blue font-semibold">Mi Perfil</Link>
           </ul>
           <ul>
-            <Link className="text-2xl text-blue font-semibold">Mis Adopciones</Link>
+            <Link to="/MisAdopciones" className="text-2xl text-blue font-semibold">Mis Adopciones</Link>
           </ul>
           <ul>
               <Link className="text-2xl text-blue font-semibold" onClick={() => closeSession()}>Salir</Link>

@@ -107,12 +107,12 @@ export const MiPerfil = () => {
                 <div className="w-full h-[80%] flex flex-col items-center mt-7">
 
                     {/* Renderizado dinámico de campos */}
-                    <div className=" grid grid-cols-2 w-[80%] mr-80 gap-11 mt-24 border-4 border-Blue rounded-xl p-10 text-3xl ">
+                    <div className=" grid grid-cols-2 w-[82%] mr-72 gap-11 mt-24 border-4 border-Blue rounded-xl p-10 text-3xl ">
 
                     <div className={`flex absolute ml-[33%] ${isEditing? "mt-[1%]" : "mt-[26%]"} transition-all `}>
                         <button
                             onClick={handleEditClick}
-                            className={`absolute flex flex-col items-center hover:scale-105 text-Blue 
+                            className={`absolute flex flex-col items-center hover:scale-105 text-Blue
                             ${isEditing ? "mt-12" : "mt-10"} ml-[70vh]`}
                         >
                             <MdModeEditOutline className="text-4xl" />
@@ -140,17 +140,17 @@ export const MiPerfil = () => {
                 </div>
             </div>
 
-            <div className="mt-20 flex flex-col items-center w-full mb-28">
+            <div className="mt-20 flex flex-col items-center w-[92.5%] mb-28 justify-between ">
                 <h2 className="text-5xl text-Newhite mb-32">Adopte siguiendo estos pasos</h2>
                 <div className="flex gap-52">
                     <div className="w-full">
-                        <img src="/public/images/explicacion1.svg" alt="" className="w-[100vh] ml-24" />
+                        <img src="/public/images/explicacion1.svg" alt="" className="w-[110vh] ml-4 " />
                     </div>
                     <div className="w-full flex">
-                        <img src="/public/images/explicacion2.svg" alt="" className="ml-32" />
+                        <img src="/public/images/explicacion2.svg" alt="" className="" />
                     </div>
                     <div className="w-full">
-                        <img src="/public/images/explicacion 3.svg" alt="" className="ml-32" />
+                        <img src="/public/images/explicacion 3.svg" alt="" className="w-[40vh] ml-16" />
                     </div>
                 </div>
             </div>

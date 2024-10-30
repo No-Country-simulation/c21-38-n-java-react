@@ -1,9 +1,9 @@
 export const preguntasAdoptante = [
   { texto: "Nombre de Usuario", name: "name", tipo: "text" },
-  { texto: "Apellido", name: "lastName", tipo: "text" },
+  { texto: "Apellido", name: "lastname", tipo: "text" },
   { texto: "Correo Electrónico", name: "email", tipo: "email" },
   { texto: "Dirección", name: "country", tipo: "text" },
-  { texto: "Teléfono", name: "cellphoneNumber", tipo: "number" },
+  { texto: "Teléfono", name: "cellphoneNumber", tipo: "text" },
   { texto: "Fecha de Nacimiento", name: "birthDate", tipo: "date" },
   {
     texto: "Estado Civil",
@@ -19,7 +19,7 @@ export const preguntasAdoptante = [
   { texto: "Miembros de la Familia", name: "familyMembers", tipo: "number" },
   { texto: "Razón para Adoptar", name: "adoptionReason", tipo: "text" },
   {
-    texto: "Tiempo Diario Disponible",
+    texto: "Tiempo Diario Disponible en horas",
     name: "dailyTimeAvailable",
     tipo: "number",
   },
@@ -29,8 +29,8 @@ export const preguntasAdoptante = [
       { name: "Cabaña", value: "CABAIN" },
       { name: "Apartamento", value: "APARTMENT" },
     ],
-   },
-  { texto: "Extensión de la Vivienda", name: "houseExtension", tipo: "number" },
+  },
+  { texto: "Extensión de la Vivienda en m²2", name: "houseExtension", tipo: "number" },
   { texto: "Tipo de Identificación", name: "identificationType", tipo: "select",
     options: [
       { name: "Cedula de Ciudadania", value: "CC" },
@@ -41,7 +41,7 @@ export const preguntasAdoptante = [
   {
     texto: "Número de Identificación",
     name: "identificationNumber",
-    tipo: "text",
+    tipo: "number",
   },
   { texto: "Ciudad", name: "city", tipo: "text" },
   { texto: "Imagen de Perfil", name: "imageProfile", tipo: null },
