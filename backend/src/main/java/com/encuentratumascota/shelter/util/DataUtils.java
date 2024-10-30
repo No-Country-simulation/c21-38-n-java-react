@@ -16,10 +16,11 @@ public class DataUtils {
     private static final int CODE_LENGTH = 6;
     private static final SecureRandom RANDOM = new SecureRandom();
 
-    public static <T> GeneralResponsDTO<T> buildResponse(MessageResponseEnum messageResponse, T body) {
+    public static <T> GeneralResponsDTO<T> buildResponse(MessageResponseEnum messageResponse, T body, List<String> errors) {
         return GeneralResponsDTO.<T>builder()
                 .code(messageResponse.getCode())
                 .message(messageResponse.getMessage())
+                .errors(errors)
                 .body(body).build();
     }
 

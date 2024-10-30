@@ -22,6 +22,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -57,6 +59,7 @@ public class UserController {
 
     @PostMapping("/adopter")
     public GeneralResponsDTO<RegisterAdopterDTO> registerAdopter(@RequestBody AdopterUserDTO adopterDTO) {
+        List<String> errors = new ArrayList<>();
         UserRegisterDTO userRegisterDTO = new UserRegisterDTO();
         userRegisterDTO.setEmail(adopterDTO.getEmail());
         userRegisterDTO.setPassword(adopterDTO.getPassword());
@@ -76,6 +79,8 @@ public class UserController {
         adopter.setDailyTimeAvailable(adopterDTO.getDailyTimeAvailable());
         adopter.setHouseType(adopterDTO.getHouseType());
         adopter.setHouseExtension(adopterDTO.getHouseExtension());
+        adopter.setIdentificationType(adopterDTO.getIdentificationType());
+        adopter.setIdentificationNumber(adopterDTO.getIdentificationNumber());
 
         try {
             RegisterUserDTO response = service.register(userRegisterDTO);
@@ -83,16 +88,18 @@ public class UserController {
             Optional<Adopter> adopterResponse =  adopterService.saveAdopter(adopter);
             if(adopterResponse.isPresent()){
                 RegisterAdopterDTO responseShelter = new RegisterAdopterDTO(adopterResponse.get(), response.getToken());
-                return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_SAVED_SUCCESSFUL,responseShelter);
+                return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_SAVED_SUCCESSFUL,responseShelter,errors);
             }
-            return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED, null);
+            return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED, null,errors);
         } catch (Exception e) {
-            return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED, null);
+            errors.add(e.getMessage());
+            return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED, null,errors);
         }
     }
 
     @PostMapping("/shelter")
     public GeneralResponsDTO<RegisterShelterDTO> registerShelter(@RequestBody ShelterDTO shelterDTO) {
+        List<String> errors =  new ArrayList<>();
         UserRegisterDTO userRegisterDTO = new UserRegisterDTO();
         userRegisterDTO.setEmail(shelterDTO.getEmail());
         userRegisterDTO.setPassword(shelterDTO.getPassword());
@@ -111,11 +118,12 @@ public class UserController {
             Optional<Shelter> shelterResponse =  shelterService.saveShelter(shelter);
             if(shelterResponse.isPresent()){
                 RegisterShelterDTO responseShelter = new RegisterShelterDTO(shelterResponse.get(), response.getToken());
-                return DataUtils.buildResponse(MessageResponseEnum.SHELTER_SAVED_SUCCESSFUL,responseShelter);
+                return DataUtils.buildResponse(MessageResponseEnum.SHELTER_SAVED_SUCCESSFUL,responseShelter,errors);
             }
-            return DataUtils.buildResponse(MessageResponseEnum.SHELTER_NOT_SAVED, null);
+            return DataUtils.buildResponse(MessageResponseEnum.SHELTER_NOT_SAVED, null,errors);
         } catch (Exception e) {
-            return DataUtils.buildResponse(MessageResponseEnum.SHELTER_NOT_SAVED, null);
+            errors.add(e.getMessage());
+            return DataUtils.buildResponse(MessageResponseEnum.SHELTER_NOT_SAVED, null, errors);
         }
     }
 
