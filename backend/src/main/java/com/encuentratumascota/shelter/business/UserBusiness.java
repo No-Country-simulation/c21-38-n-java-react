@@ -10,6 +10,9 @@ import com.encuentratumascota.shelter.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class UserBusiness {
 
@@ -21,11 +24,12 @@ public class UserBusiness {
     private ShelterService shelterService;
 
     public GeneralResponsDTO<DataListUsersDTO> getListDataUsers() {
+        List<String> errors = new ArrayList<>();
         DataListUsersDTO result = new DataListUsersDTO();
         result.setCivilStatuses(DataUtils.getAllCivilStatuses());
         result.setUserRoles(DataUtils.getAllUserRoles());
         result.setHouseTypes(DataUtils.getAllHouseTypes());
         result.setIdentificationTypes(DataUtils.getAllIdentificationTypes());
-        return DataUtils.buildResponse(MessageResponseEnum.LISTS_DATA_USERS_FOUND_SUCCESSFUL, result);
+        return DataUtils.buildResponse(MessageResponseEnum.LISTS_DATA_USERS_FOUND_SUCCESSFUL, result,errors);
     }
 }

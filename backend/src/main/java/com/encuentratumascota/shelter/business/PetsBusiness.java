@@ -48,29 +48,33 @@ public class PetsBusiness {
     }
 
     public GeneralResponsDTO<List<PetResponseDTO>> findActivePets() {
+        List<String> errors = new ArrayList<>();
         List<Pet> activePets = petService.findActivePets();
         if (!activePets.isEmpty()) {
-            return DataUtils.buildResponse(MessageResponseEnum.PETS_FOUND_SUCCESSFUL, petMapper.petsToPetResponseDTOs(activePets));
+            return DataUtils.buildResponse(MessageResponseEnum.PETS_FOUND_SUCCESSFUL, petMapper.petsToPetResponseDTOs(activePets),errors);
         }
-        return DataUtils.buildResponse(MessageResponseEnum.PETS_NOT_FOUND, new ArrayList<>());
+        return DataUtils.buildResponse(MessageResponseEnum.PETS_NOT_FOUND, new ArrayList<>(),errors);
     }
 
     public GeneralResponsDTO<Optional<PetResponseDTO>> savePet(PetRequestDTO petRequest, MultipartFile image) {
         Optional<PetResponseDTO> petResponse =  Optional.of(petMapper.petRequestDTOToPetResponseDTO(petRequest));
+        List<String> errors = new ArrayList<>();
         try {
             Pet pet = petMapper.petRequestDTOToPet(petRequest);
             this.saveImage(pet,image);
             pet.setActiveStatus(true);
             Optional<Pet> savedPet = this.petService.savePet(pet);
-            return savedPet.map(p -> DataUtils.buildResponse(MessageResponseEnum.PET_SAVED_SUCCESSFUL, Optional.of(petMapper.petToPetResponseDTO(p))))
-                    .orElseGet(() -> DataUtils.buildResponse(MessageResponseEnum.PET_NOT_SAVED, Optional.empty()));
+            return savedPet.map(p -> DataUtils.buildResponse(MessageResponseEnum.PET_SAVED_SUCCESSFUL, Optional.of(petMapper.petToPetResponseDTO(p)),errors))
+                    .orElseGet(() -> DataUtils.buildResponse(MessageResponseEnum.PET_NOT_SAVED, Optional.empty(),errors));
         } catch (Exception e) {
+            errors.add(e.getMessage());
             return DataUtils.buildResponseWithError(MessageResponseEnum.PET_NOT_SAVED, e.getMessage(), petResponse);
         }
     }
 
 
     public GeneralResponsDTO<Optional<PetResponseDTO>> editPet(Long id, PetRequestDTO petRequest, MultipartFile image) {
+        List<String> errors = new ArrayList<>();
         try {
             Optional<Pet> petToEdit = petService.findPet(id);
             if (petToEdit.isPresent()) {
@@ -83,23 +87,25 @@ public class PetsBusiness {
                     this.updateImage(pet, image);
                 }
                 Optional<Pet> updatedPet = petService.savePet(pet);
-                return updatedPet.map(p -> DataUtils.buildResponse(MessageResponseEnum.PET_UPDATED_SUCCESSFUL, Optional.of(petMapper.petToPetResponseDTO(p))))
-                        .orElseGet(() -> DataUtils.buildResponse(MessageResponseEnum.PET_NOT_UPDATED, Optional.empty()));
+                return updatedPet.map(p -> DataUtils.buildResponse(MessageResponseEnum.PET_UPDATED_SUCCESSFUL, Optional.of(petMapper.petToPetResponseDTO(p)),errors))
+                        .orElseGet(() -> DataUtils.buildResponse(MessageResponseEnum.PET_NOT_UPDATED, Optional.empty(),errors));
             }
-            return DataUtils.buildResponse(MessageResponseEnum.PET_NOT_FOUND, Optional.empty());
+            return DataUtils.buildResponse(MessageResponseEnum.PET_NOT_FOUND, Optional.empty(),errors);
         } catch (Exception e) {
+            errors.add(e.getMessage());
             return DataUtils.buildResponseWithError(MessageResponseEnum.PET_NOT_UPDATED, e.getMessage(), Optional.empty());
         }
     }
 
 
     public GeneralResponsDTO<DataListPetsDTO> getListDataPets() {
+        List<String> errors = new ArrayList<>();
         DataListPetsDTO result = new DataListPetsDTO();
         result.setBreeds(DataUtils.getAllBreedData());
         result.setSpecies(DataUtils.getAllSpecieData());
         result.setSize(DataUtils.generateListDataSize());
         result.setGender(DataUtils.generateListDataGender());
-        return DataUtils.buildResponse(MessageResponseEnum.LISTS_DATA_PETS_FOUND_SUCCESSFUL, result);
+        return DataUtils.buildResponse(MessageResponseEnum.LISTS_DATA_PETS_FOUND_SUCCESSFUL, result,errors);
     }
 
     private void saveImageDebugging(String url, String name, String userTypeImage){
@@ -135,15 +141,16 @@ public class PetsBusiness {
     }
 
     public GeneralResponsDTO<String> adopt(HttpServletRequest request, Long petId){
+        List<String> errors = new ArrayList<>();
         String authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String token = request.getHeader("Authorization").substring(7);
             String username = jwtUtil.getUsernameFromToken(token);
             Optional<Adopter> adopter = adopterService.getByEmail(username);
             Optional<Pet> pet = petService.findPet(petId);
-            return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED,"Adopción exitosa");
+            return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED,"Adopción exitosa",errors);
         }
-        return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED,"Adopción fallida");
+        return DataUtils.buildResponse(MessageResponseEnum.ADOPTER_NOT_SAVED,"Adopción fallida",errors);
     }
 
 }
