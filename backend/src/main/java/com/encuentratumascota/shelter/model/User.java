@@ -34,6 +34,7 @@ public class User implements UserDetails {
     @NotNull(message = "El correo no puede ser nulo")
     @Length(max = 100, message = "El correo no puede contener más de 100 caracteres")
     @Email(message = "El formato del correo no es válido")
+    @Column(unique = true)
     private String email;
 
 

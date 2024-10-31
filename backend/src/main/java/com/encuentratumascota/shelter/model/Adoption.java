@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "adoptions")
+@Table(name = "adoption")
 public class Adoption {
 
     @Id
@@ -29,11 +29,12 @@ public class Adoption {
     private Adopter adopter;
 
     @NotNull(message = "La fecha de adopción no puede ser nula")
-    private String adoptionDate; // Considera usar LocalDate
+    private String adoptionDate;
+
+    @NotNull(message = "La descripción de la adopción no puede ser nula")
+    private String description;
 
     @NotNull(message = "El estado de adopción no puede ser nulo")
     @Enumerated(EnumType.STRING)
-    private AdoptionStatus status; // Nuevo atributo para el estado de la adopción
-
-    // Puedes agregar más atributos, como notas, etc.
+    private AdoptionStatus status;
 }

@@ -19,4 +19,9 @@ public class ShelterService implements IShelterService {
     public Optional<Shelter> saveShelter(Shelter shelter) {
         return Optional.of(iShelterRepository.save(shelter));
     }
+    @Override
+    public Optional<Shelter> getByEmail(String email) {
+        return Optional.of(iShelterRepository.findByUserEmail(email));
+    }
+
 }

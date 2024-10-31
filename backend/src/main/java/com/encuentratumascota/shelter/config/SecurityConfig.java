@@ -36,27 +36,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // Deshabilita la protección CSRF
                 .csrf(AbstractHttpConfigurer::disable)
-                // Autoriza las peticiones HTTP mediante el objeto authorizationManagerRequestMatcherRegistry
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
-                        .requestMatchers("/api/auth/**").permitAll()    // Permite el acceso a todas las URL que comiencen con '/api/auth/'
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").permitAll()    // Permite el acceso a la UI de Swagger
-                        .requestMatchers("/v3/api-docs/**").permitAll()   // Permite el acceso a la documentación de API de Swagger
-                        .requestMatchers("/swagger-resources/**").permitAll()    // Permite el acceso a todas las URL que comiencen con '/api/auth/'
-                        .requestMatchers("/api/pets/**").permitAll()     // Permite el acceso a todas las URL que comiencen con '/api/pets/'
-                        .anyRequest().authenticated()                     // Cualquier otra URL requiere autenticación
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-resources/**").permitAll()
+                        .requestMatchers("/api/pets/lists").permitAll()
+                        .anyRequest().authenticated()
                 )
-                // Configura la gestión de sesiones como 'STATELESS' (sin estado)
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                // Establece el proveedor de autenticación
                 .authenticationProvider(
                         authenticationProvider
                 )
-                // Añade el filtro de autenticación antes del filtro estándar de autenticación por nombre de usuario y contraseña
                 .addFilterBefore(
                         authenticationFilter,
                         UsernamePasswordAuthenticationFilter.class

@@ -4,6 +4,7 @@ public enum AdoptionStatus {
 
     IN_PROCESS("En proceso"),
     DENIED("Negado"),
+    ERROR("Error"),
     ACCEPTED("Aceptado");
 
     private String name;
