@@ -19,9 +19,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
-/**
- * Clase de configuración para la seguridad de la aplicación.
- */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -29,16 +26,8 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter authenticationFilter;
-
     private final AuthenticationProvider authenticationProvider;
 
-    /**
-     * Configura el filtro de seguridad y la cadena de filtros de seguridad HTTP.
-     *
-     * @param http El objeto HttpSecurity utilizado para configurar la seguridad HTTP.
-     * @return La cadena de filtros de seguridad configurada.
-     * @throws Exception Si hay algún error durante la configuración.
-     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -51,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/swagger-resources/**").permitAll()
                         .requestMatchers("/api/pets/lists").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/pets").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/pets").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
@@ -59,15 +48,9 @@ public class SecurityConfig {
                 )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 
-    /**
-     * Configuración de CORS para permitir conexiones desde orígenes externos.
-     *
-     * @return La fuente de configuración de CORS.
-     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -75,7 +58,6 @@ public class SecurityConfig {
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
