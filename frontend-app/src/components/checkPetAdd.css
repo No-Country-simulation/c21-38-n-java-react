@@ -1,0 +1,18 @@
+.animate-slideUp {
+    animation: slideUp 3s ease-in-out forwards; /* La animación durará 3 segundos */
+}
+
+@keyframes slideUp {
+        0% {
+            transform: translateY(450%); /* Empieza desde fuera de la pantalla */
+            opacity: 1;
+        }
+        50% {
+            transform: translateY(0); /* Llega al centro de la pantalla */
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-610%); /* Desaparece hacia arriba */
+            opacity: 0;
+        }
+    }
