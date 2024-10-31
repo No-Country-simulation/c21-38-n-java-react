@@ -9,7 +9,6 @@ import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
 import com.encuentratumascota.shelter.model.Adoption;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +31,6 @@ public class PetController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @PreAuthorize("hasAuthority('SHELTER')")
     public GeneralResponsDTO<Optional<PetResponseDTO> > savePet(
             HttpServletRequest request, @ModelAttribute PetRequestDTO pet,
             @RequestParam("image") MultipartFile image) {

@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Filtro de autenticación JWT que verifica la validez del token en cada solicitud.
@@ -28,6 +30,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
 
     private final UserDetailsService userDetailsService;
+
+    // Lista de paths públicos que no requieren autenticación
+    private final List<String> PUBLIC_PATHS = Arrays.asList(
+            "/api/auth",
+            "/api/public",
+            "/swagger-ui",
+            "/v3/api-docs",
+            "/swagger-resources"
+    );
 
     /**
      * Realiza la lógica de filtrado para autenticar las solicitudes mediante tokens JWT.
@@ -41,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            if (isAuthRequest(request)) {
+            if (isPublicRequest(request)) {
                 filterChain.doFilter(request, response);
                 return;
             }
@@ -77,10 +88,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      * @param request La solicitud HTTP entrante.
      * @return true si la solicitud es para autenticación, false en caso contrario.
      */
-    private boolean isAuthRequest(HttpServletRequest request) {
-        return request.getServletPath().contains("/api/auth");
+    private boolean isPublicRequest(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return PUBLIC_PATHS.stream().anyMatch(path::startsWith);
     }
-
     /**
      * Obtiene el token JWT de la solicitud HTTP.
      *
