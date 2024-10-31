@@ -19,7 +19,7 @@ export const preguntasAdoptante = [
   { texto: "Miembros de la Familia", name: "familyMembers", tipo: "number" },
   { texto: "Razón para Adoptar", name: "adoptionReason", tipo: "text" },
   {
-    texto: "Tiempo Diario Disponible en horas",
+    texto: "Tiempo Diario Disponible en Horas",
     name: "dailyTimeAvailable",
     tipo: "number",
   },
@@ -44,7 +44,7 @@ export const preguntasAdoptante = [
     tipo: "number",
   },
   { texto: "Ciudad", name: "city", tipo: "text" },
-  { texto: "Imagen de Perfil", name: "imageProfile", tipo: null },
+  { texto: "¿Tuvo mascotas antes? (Si/No)", name: "imageProfile", tipo: null },
   { texto: "Contraseña", name: "password", tipo: "password" },
 ];
 

@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
 import { Nav } from "../Nav"
-import { useLogin } from "../../store/login/login"
 import { useState } from "react"
 
 export const Login = () => {
@@ -55,16 +54,16 @@ export const Login = () => {
     //_______________________________
 
   return (
-    <main className="h-screen bg-cover bg-center flex flex-col justify-center items-center" style={{ backgroundImage: `url('/public/images/gatowallpaper.jpg` }} >
-      <div className="w-[90%] flex justify-center mt-[-10%] mb-16">
+    <main className="h-screen bg-cover bg-center flex flex-col justify-center items-center" style={{ backgroundImage: `url('/public/images/gatowallpaper.jpg` } } >
+      <div className="w-[90%] flex justify-center ">
         <Nav />
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-Blue/50 backdrop-blur-2xl h-[60%] w-[45%] rounded-2xl px-52 text-Newhite flex flex-col justify-center mt-14 border-2 border-orange">
+      <form onSubmit={handleSubmit} className="bg-Blue/5 backdrop-blur-lg h-[60%] w-[43%] ml-96 rounded-2xl px-52 text-Newhite flex flex-col justify-center mt-36 border-4 border-Blue shadow-2xl">
         <h2 className="text-3xl mb-10 text-center font-medium">Iniciar Sesion</h2>
 
         <div className="mb-10 text-lg">
-          <label htmlFor="email" className="block text-lg font-medium ">Correo Electrónico</label>
+          <label htmlFor="email" className="block text-2xl font-medium ">Correo Electrónico</label>
           <input
             name="email"
             type="email"
@@ -76,7 +75,7 @@ export const Login = () => {
         </div>
 
         <div className="mb-6 text-lg">
-          <label htmlFor="password" className="block text-lg font-medium ">Contraseña</label>
+          <label htmlFor="password" className="block text-2xl font-medium ">Contraseña</label>
           <input
             name="password"
             type="password"
@@ -93,7 +92,7 @@ export const Login = () => {
         </button>
       </form>
       
-      <section className="flex justify-between">
+      <section className="flex gap-28 ml-96 text-Newhite text-xl">
           <div className="mt-8 hover:scale-105">
             <Link to="/registre" >Registrarme</Link>
           </div>

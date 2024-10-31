@@ -85,11 +85,14 @@ export const Formulario = ({ titulo, preguntas, URL }) => {
             )
           } else {
             return (
-              <div key={index} className="mb-6 text-lg">
+              <div key={index} className="mb-6 text-lg text-Blue">
+                <h1 className="text-Newhite block text-lg font-medium">{pregunta.texto}</h1>
                 <select
                   onChange={(e) => handleChange(e, pregunta.tipo)}
                   name={pregunta.name}
-                  required>
+                  required
+                  className="w-[35vh] h-12 mt-1 rounded-md"
+                  >
                   <option value="">-- Seleccione --</option>
                   {
                     pregunta.options.map(pregunta => (

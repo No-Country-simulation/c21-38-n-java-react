@@ -13,7 +13,7 @@ export const UserOrShelter = ({photo, titulo}) =>{
 
 
     return(
-        <main className={`p-10  bg-cover ${isFormActive ? "h-full" : "h-screen"} bg-center flex flex-col justify-center items-center`} 
+        <main className={`p-10  bg-cover ${isFormActive ? "min-h-screen" : "h-screen"} bg-center flex flex-col justify-center items-center`} 
             style={{ backgroundImage: `url('/public/images/${photo}')` }}>
             
             <Nav/>

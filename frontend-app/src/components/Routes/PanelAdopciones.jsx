@@ -143,6 +143,7 @@ export const PanelAdopciones = () => {
                         inset 0 20px 80px rgba(0, 0, 0, 0.1)
                     `
                 }}
+
             >
                 {slides.map((slide, index) => (
                     visibleCards[index] && (
@@ -182,7 +183,7 @@ export const PanelAdopciones = () => {
                             <img 
                                 src={slide} 
                                 alt={`Animal ${index + 1}`} 
-                                className="w-[30%] h-[85%] rounded-lg object-cover ml-11"
+                                className="w-[30%] h-[85%] rounded-lg object-cover ml-11 shadow-2xl"
                             />
                             <div className="ml-4 text-white mr-40 text-[6vh] flex flex-col">
                                 <p className="mr-56">{infoSlides[index]}</p>
