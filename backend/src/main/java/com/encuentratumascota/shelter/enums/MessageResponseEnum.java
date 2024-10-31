@@ -15,6 +15,11 @@ public enum MessageResponseEnum {
 	SHELTER_NOT_SAVED(400,"El refugio NO fue registrado"),
 	ADOPTER_SAVED_SUCCESSFUL(200,"El adoptante fue registrado exitosamente"),
 	ADOPTER_NOT_SAVED(400,"El adoptante NO fue registrado"),
+	ERROR_ADOPTION(400,"Error al realizar el proceso de adopción"),
+	ADOPTION_NOT_SAVED(400,"La adopción NO fue registrada"),
+	ADOPTION_REGISTER_SUCCESSFUL(200,"Adopción registrada exitosamente"),
+
+
 	ADOPTION_FAILED(400,"El proceso de adopción falló"),
 	ADOPTION_SUCCESSFUL(200,"El proceso de adopción fue exitoso"),
 

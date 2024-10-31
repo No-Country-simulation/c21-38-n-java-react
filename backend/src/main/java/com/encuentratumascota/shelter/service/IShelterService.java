@@ -9,4 +9,7 @@ public interface IShelterService {
 
     public Optional<Shelter> saveShelter(Shelter shelter);
 
+    public Optional<Shelter> getByEmail(String email);
+
+
 }
