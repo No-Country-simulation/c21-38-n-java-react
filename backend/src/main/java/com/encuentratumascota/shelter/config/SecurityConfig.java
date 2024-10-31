@@ -29,6 +29,7 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter authenticationFilter;
+
     private final AuthenticationProvider authenticationProvider;
 
     /**
@@ -41,8 +42,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Configuración CORS
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilita CORS con la configuración especificada
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/public/**").permitAll()
@@ -63,17 +64,17 @@ public class SecurityConfig {
     }
 
     /**
-     * Configuración global de CORS para permitir cualquier origen, métodos y credenciales.
+     * Configuración de CORS para permitir conexiones desde orígenes externos.
      *
-     * @return Objeto CorsConfigurationSource configurado.
+     * @return La fuente de configuración de CORS.
      */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*")); // Permite todos los orígenes
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Permite todos los métodos HTTP
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type")); // Headers permitidos
-        configuration.setAllowCredentials(true); // Permite envío de credenciales
+        configuration.setAllowedOrigins(List.of("http://localhost:5174")); // Cambia el origen permitido según sea necesario
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
