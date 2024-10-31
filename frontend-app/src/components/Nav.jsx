@@ -9,7 +9,7 @@ export const Nav = ({width="w-[70%]", shadow="shadow-lg"}) => {
     <nav className={`h-16 ${width} bg-[#F39C12] rounded-xl flex justify-between items-center pl-5 ${shadow} shadow-black px-10 `}>
       <a href="/"><img src="/images/logo.png" alt="" className="w-16 hover:scale-105 transition-all" /></a>
 
-      {typeUser === "" &&(
+      {typeUser === "" && (
         <>
         <ul>
           <Link to="/huellitas"><li className="text-3xl text-blue font-semibold">Huellitas</li></Link>
@@ -41,7 +41,7 @@ export const Nav = ({width="w-[70%]", shadow="shadow-lg"}) => {
 
       )}
       
-      {typeUser == "ADOPTER" &&(
+      {typeUser === "ADOPTER" &&(
         <>
           <ul>
             <Link to="/huellitas"><li className="text-3xl text-blue font-semibold">Huellitas</li></Link>

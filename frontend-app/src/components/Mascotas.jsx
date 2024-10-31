@@ -2,21 +2,18 @@ import { Mascota } from "./Mascota"
 import '../index.css'
 import { useEffect, useState } from "react"
 import 'ldrs/tailChase'
-import { mascotas } from "../store/mascotas"
 
 export const Mascotas = () => {
 
   // const [pets, setPets] = useState([])
-  const [pets, setPets] = useState(mascotas.slice(0, 4))
+  const [pets, setPets] = useState([])
 
   useEffect(() => {
     const getListPets = async () => {
       try {
         const response = await fetch('https://c21-38-n-java-react-production.up.railway.app/api/public/pets')
         const data = await response.json()
-        setPets(data.body.slice(0, 4))
-        setPets(Array.isArray(data.body) ? data.body.slice(0, 4) : []);
-        
+        setPets(data.body.slice(0, 4))        
       } catch (error) {
         console.log(error)
         setPets([])
