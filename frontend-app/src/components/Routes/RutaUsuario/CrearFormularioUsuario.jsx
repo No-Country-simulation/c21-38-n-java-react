@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../../store/login/login";
+import { setTokenCookie } from "../../../lib/cookiesSession";
 
 
 export const Formulario = ({ titulo, preguntas, URL }) => {
   const navigate = useNavigate()
+  const { initSession } = useLogin()
   const [userInfo, setUserInfo] = useState({
     name: "",
     lastName: "",
@@ -51,6 +54,13 @@ export const Formulario = ({ titulo, preguntas, URL }) => {
       console.log(response)
       if (response.status === 200) {
         const data = await response.json();
+        if (data.message === "El refugio fue registrado exitosamente") {
+          initSession(data.body.adopter, data.body.token, "SHELTER")
+          setTokenCookie(data.body.token)
+        } else {
+          initSession(data.body.adopter, data.body.token, "ADOPTER")
+          setTokenCookie(data.body.token)
+        }
         console.log("Adoptante registrado exitosamente:", data);
         navigate('/login')
         // Aquí puedes manejar la respuesta del servidor

@@ -1,14 +1,21 @@
 import { Link, useNavigate } from "react-router-dom"
 import { Nav } from "../Nav"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useLogin } from "../../store/login/login"
+import { getTokenCookie, setTokenCookie } from "../../lib/cookiesSession"
 
 export const Login = () => {
 
   const navigate = useNavigate()
+  const { login, loginSession, checkSession } = useLogin()
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    checkSession()
+  }, [])
 
   const handleChange = (e, type) => {
     const { name, value } = e.target;
@@ -22,8 +29,6 @@ export const Login = () => {
     }));
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -34,12 +39,12 @@ export const Login = () => {
         },
         body: JSON.stringify(userInfo),
       });
-      console.log(response)
       if (response.status === 200) {
         const data = await response.json();
         console.log("ingreso validado:", data);
+        loginSession(data.token)
+        setTokenCookie(data.token)
         navigate('/')
-        // Aquí puedes manejar la respuesta del servidor
       } else {
         console.error("Error al consultar usuario:", response.status);
       }
@@ -49,9 +54,7 @@ export const Login = () => {
     }
   };
 
-
-
-    //_______________________________
+  if (login) navigate("/")
 
   return (
     <main className="h-screen bg-cover bg-center flex flex-col justify-center items-center" style={{ backgroundImage: `url('/public/images/gatowallpaper.jpg` } } >
@@ -60,8 +63,6 @@ export const Login = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="bg-Blue/5 backdrop-blur-lg h-[60%] w-[43%] ml-96 rounded-2xl px-52 text-Newhite flex flex-col justify-center mt-36 border-4 border-Blue shadow-2xl">
-        <h2 className="text-3xl mb-10 text-center font-medium">Iniciar Sesion</h2>
-
         <div className="mb-10 text-lg">
           <label htmlFor="email" className="block text-2xl font-medium ">Correo Electrónico</label>
           <input
@@ -94,7 +95,7 @@ export const Login = () => {
       
       <section className="flex gap-28 ml-96 text-Newhite text-xl">
           <div className="mt-8 hover:scale-105">
-            <Link to="/registre" >Registrarme</Link>
+            <Link to="/RegistroUsario" >Registrarme</Link>
           </div>
 
           <div className="mt-8 hover:scale-105">

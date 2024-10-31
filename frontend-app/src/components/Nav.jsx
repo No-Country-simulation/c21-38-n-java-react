@@ -23,7 +23,7 @@ export const Nav = ({width="w-[70%]", shadow="shadow-lg"}) => {
         </>
       )}
 
-      {typeUser === "refugio" && (
+      {typeUser === "SHELTER" && (
         <>
           <ul>
             <Link to="/RegistroMascota" className="text-2xl text-blue font-semibold">Agregar Mascota</Link>
@@ -41,7 +41,7 @@ export const Nav = ({width="w-[70%]", shadow="shadow-lg"}) => {
 
       )}
       
-      {typeUser == "adoptante" &&(
+      {typeUser == "ADOPTER" &&(
         <>
           <ul>
             <Link to="/huellitas"><li className="text-3xl text-blue font-semibold">Huellitas</li></Link>
