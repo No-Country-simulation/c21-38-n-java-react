@@ -12,7 +12,7 @@ export const Pets = () => {
 
     const getListPets = async () => {
       try {
-        const response = await fetch('https://c21-38-n-java-react-production.up.railway.app/api/pets')
+        const response = await fetch('https://c21-38-n-java-react-production.up.railway.app/api/public/pets')
         const data = await response.json()
         console.log(data)
         setListPets(Array.isArray(data.body) ? data.body : []);
