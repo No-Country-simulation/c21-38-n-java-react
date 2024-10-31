@@ -10,4 +10,7 @@ import java.util.List;
 public interface IPetRepository extends JpaRepository<Pet, Long> {
 	
     public List<Pet> findByActiveStatus(boolean activeStatus);
+
+    public List<Pet> findByShelterId(Long shelterId);
+
 }

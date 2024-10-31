@@ -10,4 +10,6 @@ public interface IPetService {
     public List<Pet> findActivePets();
     public Optional<Pet> savePet(Pet pet);
     public Optional<Pet> findPet(Long id);
+    public List<Pet> findActiveByShelterId(Long shelterId);
+
 }

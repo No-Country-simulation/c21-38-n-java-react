@@ -14,4 +14,7 @@ public interface IAuthService {
     AuthDTO login(LoginDTO login) throws Exception;
 
     RegisterUserDTO register(UserRegisterDTO register) throws Exception;
+
+    RegisterUserDTO update(Long userId,UserRegisterDTO register) throws Exception;
+
 }
