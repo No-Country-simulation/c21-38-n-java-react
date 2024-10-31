@@ -76,6 +76,20 @@ public class AuthService implements IAuthService {
         }
     }
 
+    @Override
+    public RegisterUserDTO update(Long userId,UserRegisterDTO register) throws Exception {
+        try {
+            User user = createUserFromRegistration(register);
+            user.setId(userId);
+            user = userRepository.save(user);
+            String token = jwtUtil.generateToken(user);
+            return new RegisterUserDTO(user,token);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new Exception(e.getMessage());
+        }
+    }
+
     /**
      * Autentica al usuario utilizando el gestor de autenticación.
      *

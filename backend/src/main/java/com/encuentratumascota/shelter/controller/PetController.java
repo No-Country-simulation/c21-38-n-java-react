@@ -3,9 +3,9 @@ package com.encuentratumascota.shelter.controller;
 import com.encuentratumascota.shelter.business.PetsBusiness;
 import com.encuentratumascota.shelter.dto.request.AdoptionDTO;
 import com.encuentratumascota.shelter.dto.request.PetRequestDTO;
-import com.encuentratumascota.shelter.dto.response.DataListPetsDTO;
 import com.encuentratumascota.shelter.dto.response.GeneralResponsDTO;
 import com.encuentratumascota.shelter.dto.response.PetResponseDTO;
+import com.encuentratumascota.shelter.enums.AdoptionStatus;
 import com.encuentratumascota.shelter.model.Adoption;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
@@ -26,8 +26,8 @@ public class PetController {
     }
 
     @GetMapping
-    public GeneralResponsDTO<List<PetResponseDTO>> getPets() {
-        return this.petsBusiness.findActivePets();
+    public GeneralResponsDTO<List<PetResponseDTO>> getPets(HttpServletRequest request) {
+        return this.petsBusiness.findActivePetsByShelterId(request);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -45,15 +45,26 @@ public class PetController {
         return petsBusiness.editPet(id, pet, image);
     }
 
-
-    @GetMapping("/lists")
-    public GeneralResponsDTO<DataListPetsDTO> getLists() {
-        return this.petsBusiness.getListDataPets();
-    }
-
     @PostMapping("/adopt")
     public GeneralResponsDTO<Adoption> adopt(HttpServletRequest request, @RequestBody AdoptionDTO adoption) {
         return this.petsBusiness.adopt(request, adoption);
+    }
+
+    @PutMapping("/adopt")
+    public GeneralResponsDTO<Adoption> updateAdoption(HttpServletRequest request,@RequestParam Long id , @RequestParam AdoptionStatus adoptionStatus) {
+        return this.petsBusiness.updateAdoption(request, id,adoptionStatus);
+    }
+
+
+
+    @GetMapping("/shelter/adoptions")
+    public GeneralResponsDTO<List<Adoption>> shelterAdoptions(HttpServletRequest request) {
+        return this.petsBusiness.shelterAdoptions(request);
+    }
+
+    @GetMapping("/adopter/adoptions")
+    public GeneralResponsDTO<List<Adoption>> adopterAdoptions(HttpServletRequest request) {
+        return this.petsBusiness.adopterAdoptions(request);
     }
 
 

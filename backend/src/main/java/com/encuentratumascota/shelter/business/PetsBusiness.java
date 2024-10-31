@@ -59,6 +59,31 @@ public class PetsBusiness {
         return DataUtils.buildResponse(MessageResponseEnum.PETS_NOT_FOUND, new ArrayList<>(), errors);
     }
 
+    public GeneralResponsDTO<List<PetResponseDTO>> findActivePetsByShelterId(HttpServletRequest request) {
+        List<String> errors = new ArrayList<>();
+        List<Pet> activePets = new ArrayList<>();
+        String authorizationHeader = request.getHeader("Authorization");
+        try {
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+                String token = request.getHeader("Authorization").substring(7);
+                String username = jwtUtil.getUsernameFromToken(token);
+                Optional<Shelter> shelter = shelterService.getByEmail(username);
+                if (shelter.isEmpty()) {
+                    errors.add("El refugio no fue encontrado para efectuar la consulta");
+                    return DataUtils.buildResponse(MessageResponseEnum.PET_NOT_SAVED, null, errors);
+                }
+                activePets = petService.findActiveByShelterId(shelter.get().getId());
+            }
+            if (!activePets.isEmpty()) {
+                return DataUtils.buildResponse(MessageResponseEnum.PETS_FOUND_SUCCESSFUL, petMapper.petsToPetResponseDTOs(activePets), errors);
+            }
+            return DataUtils.buildResponse(MessageResponseEnum.PETS_NOT_FOUND, new ArrayList<>(), errors);
+        }catch(Exception e){
+            errors.add(e.getMessage());
+            return DataUtils.buildResponse(MessageResponseEnum.PETS_NOT_FOUND, new ArrayList<>(), errors);
+        }
+    }
+
     public GeneralResponsDTO<Optional<PetResponseDTO>> savePet(HttpServletRequest request, PetRequestDTO petRequest, MultipartFile image) {
         Optional<PetResponseDTO> petResponse = Optional.of(petMapper.petRequestDTOToPetResponseDTO(petRequest));
         List<String> errors = new ArrayList<>();
@@ -154,6 +179,45 @@ public class PetsBusiness {
         tempFile.delete();
     }
 
+    public GeneralResponsDTO<List<Adoption>> shelterAdoptions(HttpServletRequest request) {
+        List<String> errors = new ArrayList<>();
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            String token = request.getHeader("Authorization").substring(7);
+            String username = jwtUtil.getUsernameFromToken(token);
+            Optional<Shelter> shelter = shelterService.getByEmail(username);
+            if (shelter.isEmpty()) {
+                errors.add("El refugio NO está registrado en el sistema");
+                return DataUtils.buildResponse(MessageResponseEnum.ADOPTIONS_NOT_FOUND, null, errors);
+            }
+            List<Adoption> result = adoptionService.getAdoptionsByShelterId(shelter.get().getId());
+            if (result.isEmpty()) {
+                errors.add("El usuario no tiene adopciones asociadas");
+            }
+            return DataUtils.buildResponse(MessageResponseEnum.ADOPTIONS_SUCCESSFUL, result, errors);
+        }
+        return DataUtils.buildResponse(MessageResponseEnum.ADOPTIONS_NOT_FOUND, new ArrayList<>(), errors);
+
+    }
+
+
+    public GeneralResponsDTO<List<Adoption>> adopterAdoptions(HttpServletRequest request) {
+        List<String> errors = new ArrayList<>();
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            String token = request.getHeader("Authorization").substring(7);
+            String username = jwtUtil.getUsernameFromToken(token);
+            List<Adoption> result = adoptionService.getAdoptionsByAdopterEmail(username);
+            if (result.isEmpty()) {
+                errors.add("El usuario no tiene adopciones asociadas");
+            }
+            return DataUtils.buildResponse(MessageResponseEnum.ADOPTIONS_SUCCESSFUL, result, errors);
+        }
+        return DataUtils.buildResponse(MessageResponseEnum.ADOPTIONS_NOT_FOUND, new ArrayList<>(), errors);
+
+    }
+
+
     public GeneralResponsDTO<Adoption> adopt(HttpServletRequest request, AdoptionDTO adoptionDTO) {
         List<String> errors = new ArrayList<>();
         Adoption adoption = new Adoption();
@@ -186,4 +250,29 @@ public class PetsBusiness {
         return DataUtils.buildResponse(MessageResponseEnum.ADOPTION_NOT_SAVED, adoption, errors);
     }
 
+    public GeneralResponsDTO<Adoption> updateAdoption(HttpServletRequest request, Long id,AdoptionStatus adoptionStatus) {
+        List<String> errors = new ArrayList<>();
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            String token = request.getHeader("Authorization").substring(7);
+            String username = jwtUtil.getUsernameFromToken(token);
+            Optional<Shelter> shelter = shelterService.getByEmail(username);
+            if (shelter.isEmpty()) {
+                errors.add("El refugio NO está registrado en el sistema");
+                return DataUtils.buildResponse(MessageResponseEnum.ADOPTION_NOT_UPDATED, null, errors);
+            }
+            Optional<Adoption> adoption = adoptionService.getAdoptionsById(id);
+            if (adoption.isEmpty()) {
+                errors.add("El registro de la adopción NO está registrado en el sistema");
+                return DataUtils.buildResponse(MessageResponseEnum.ADOPTION_NOT_UPDATED, null, errors);
+
+            }
+            Optional<Adoption> result = adoptionService.changeStatusAdoption(adoption.get(),adoptionStatus);
+            if (result.isEmpty()) {
+                return DataUtils.buildResponse(MessageResponseEnum.ADOPTION_NOT_UPDATED, null, errors);
+            }
+            return DataUtils.buildResponse(MessageResponseEnum.ADOPTION_UPDATED_SUCCESSFUL, result.get(), errors);
+        }
+        return DataUtils.buildResponse(MessageResponseEnum.ADOPTION_NOT_UPDATED, null, errors);
+    }
 }

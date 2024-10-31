@@ -5,6 +5,7 @@ import com.encuentratumascota.shelter.model.Adoption;
 import com.encuentratumascota.shelter.repository.IAdoptionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,5 +26,20 @@ public class AdoptionService implements IAdoptionService {
     public Optional<Adoption> changeStatusAdoption(Adoption adoption, AdoptionStatus adoptionStatus) {
         adoption.setStatus(adoptionStatus);
         return Optional.of(iAdoptionRepository.save(adoption));
+    }
+
+    @Override
+    public List<Adoption> getAdoptionsByAdopterEmail(String email) {
+        return iAdoptionRepository.findByAdopterUserEmail(email);
+    }
+
+    @Override
+    public List<Adoption> getAdoptionsByShelterId(Long id) {
+        return iAdoptionRepository.findByPetShelterId(id);
+    }
+
+    @Override
+    public Optional<Adoption> getAdoptionsById(Long id) {
+        return iAdoptionRepository.findById(id);
     }
 }

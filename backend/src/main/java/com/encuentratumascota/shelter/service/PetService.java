@@ -1,7 +1,5 @@
 package com.encuentratumascota.shelter.service;
 
-import com.encuentratumascota.shelter.enums.Breed;
-import com.encuentratumascota.shelter.enums.Specie;
 import com.encuentratumascota.shelter.model.Pet;
 import com.encuentratumascota.shelter.repository.IPetRepository;
 import org.springframework.stereotype.Service;
@@ -34,6 +32,11 @@ public class PetService implements IPetService {
     @Override
     public Optional<Pet> findPet(Long id) {
         return petRepository.findById(id);
+    }
+
+    @Override
+    public List<Pet> findActiveByShelterId(Long shelterId) {
+        return petRepository.findByShelterId(shelterId);
     }
 
 
