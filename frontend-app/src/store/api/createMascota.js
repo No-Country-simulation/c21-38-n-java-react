@@ -1,7 +1,8 @@
+import { getTokenCookie } from "../../lib/cookiesSession";
+
 export const createPet = async (datas) => {
     try {
-        const url = "http://c21-38-n-java-react-production.up.railway.app/api/pets";
-
+        const url = "https://c21-38-n-java-react-production.up.railway.app/api/pets";
 
         const formData = new FormData();
         
@@ -19,7 +20,12 @@ export const createPet = async (datas) => {
 
         const response = await fetch(url, {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${getTokenCookie()}`, 
+            },
+              mode: 'cors'
+
         });
 
         if (!response.ok) {

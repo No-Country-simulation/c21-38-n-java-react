@@ -19,7 +19,7 @@ export const Lista = ({ nombreCampo, tipo, isImput }) => {
   useEffect(() => {
     const getPetsList = async () => {
       try {
-        const response = await fetch('https://c21-38-n-java-react-production.up.railway.app/api/pets/lists')
+        const response = await fetch('https://c21-38-n-java-react-production.up.railway.app/api/public/lists')
         const data = await response.json()
         setSpecies(data.body.species)
         setBreeds(data.body.breeds)
