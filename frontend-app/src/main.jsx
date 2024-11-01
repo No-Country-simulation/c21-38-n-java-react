@@ -10,7 +10,6 @@ import { Login } from './components/Routes/Login.jsx'
 import { RegistroMascota } from './components/Routes/RutaMascotas/RegistroMascota.jsx'
 import { EditarUsuario } from './components/Routes/RutaUsuario/EditarUsuario.jsx'
 import { EditarMascota } from './components/Routes/RutaMascotas/EditarMascota.jsx'
-import { MiPerfil } from './components/Routes/Pefil/MiPerfil.jsx'
 import { Pets } from './components/Routes/mascotas/Pets.jsx'
 import { MisAdopciones } from './components/Routes/MisAdopciones.jsx'
 import { PanelAdopciones } from './components/Routes/PanelAdopciones.jsx'
@@ -54,10 +53,6 @@ const router=createBrowserRouter(
       {
         path:'/editPet',
         element:<EditarMascota/>
-      },
-      {
-        path:'/MiPerfil',
-        element:<MiPerfil/>
       },
       {
         path:'/MisAdopciones',

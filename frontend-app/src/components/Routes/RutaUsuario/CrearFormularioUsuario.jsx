@@ -63,7 +63,6 @@ export const Formulario = ({ titulo, preguntas, URL }) => {
         }
         console.log("Adoptante registrado exitosamente:", data);
         navigate('/login')
-        // Aquí puedes manejar la respuesta del servidor
       } else {
         console.error("Error al registrar adoptante:", response.status);
       }

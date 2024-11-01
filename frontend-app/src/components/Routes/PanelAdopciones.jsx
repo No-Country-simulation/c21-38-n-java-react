@@ -3,45 +3,45 @@ import { Nav } from "../Nav";
 
 export const PanelAdopciones = () => {
     const slides = [
-        "./../../../public/images/cachorrog1.jpg",
-        "./../../../public/images/cachorrog2.jpg",
-        "./../../../public/images/cachorrog3.jpg",
-        "./../../../public/images/cachorrog5.jpg",
+        "./../../../public/images/dobb.jpeg",
+        "./../../../public/images/gato8.jpg",
+        "./../../../public/images/perro1.jpg",
+        "./../../../public/images/cachorrog6.jpg",
     ];
 
-    const infoSlides = ["Sanchito", "Luciano", "Garritas", "Pepon"];
+    const infoSlides = ["Coco", "Persi", "Daisy", "Luna"];
 
     const InfoExtra = [
         {
-            Especie: "Gato",
-            Raza: "Callejero",
-            Edad: 3,
-            Sexo: "Hembra",
-            Salud: "Se encuentra en buen estado de salud. Todas las vacunas al día.",
-            Tamaño: "Pequeño"
+            Especie: "Perro",
+            Raza: "Dobberman",
+            Edad: 2,
+            Sexo: "Macho",
+            Salud: "Excelente estado de salud",
+            Tamaño: "Mediano"
         },
         {
             Especie: "Gato",
-            Raza: "Callejero",
+            Raza: "Persa",
             Edad: 3,
-            Sexo: "Hembra",
-            Salud: "Se encuentra en buen estado de salud. Todas las vacunas al día.",
+            Sexo: "Macho",
+            Salud: "Buen estado",
             Tamaño: "Pequeño"
         },
         {
-            Especie: "Gato",
+            Especie: "Perro",
             Raza: "Callejero",
             Edad: 3,
             Sexo: "Hembra",
-            Salud: "Se encuentra en buen estado de salud. Todas las vacunas al día.",
-            Tamaño: "Pequeño"
+            Salud: "Excelente estado de salud",
+            Tamaño: "Mediano"
         },
         {
             Especie: "Gato",
-            Raza: "Callejero",
-            Edad: 3,
+            Raza: "Otras",
+            Edad: 1,
             Sexo: "Hembra",
-            Salud: "Se encuentra en buen estado de salud. Todas las vacunas al día.",
+            Salud: "Buen estado de salud",
             Tamaño: "Pequeño"
         }
     ];

@@ -49,14 +49,14 @@ export const preguntasAdoptante = [
 ];
 
 export const preguntasVeterinaria = [
-  { texto: "Nombre de la Veterinaria", name: "name", tipo: "text" },
+  { texto: "Nombre del refugio", name: "name", tipo: "text" },
   { texto: "Capacidad Máxima", name: "maxCapacity", tipo: "number" },
   { texto: "Registro Legal", name: "legalRegistration", tipo: "text" },
   { texto: "Correo Electrónico", name: "email", tipo: "email" },
   { texto: "Contraseña", name: "password", tipo: "password" },
   // { texto: "Rol", name: "role", tipo: "text" },
   { texto: "Teléfono", name: "cellphoneNumber", tipo: "text" },
-  { texto: "Imagen de Perfil", name: "imageProfile", tipo: null },
+  { texto: "¿Tiene una unica sucursal? (Si/No)", name: "imageProfile", tipo: null },
   { texto: "País", name: "country", tipo: "text" },
   { texto: "Ciudad", name: "city", tipo: "text" },
 ];

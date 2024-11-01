@@ -1,33 +1,15 @@
 import { useEffect, useState } from "react";
-import { Carousel } from "./Carousel";
 import { Nav } from "../Nav"
 import { getTokenCookie } from "../../lib/cookiesSession";
 import { useLogin } from "../../store/login/login";
 
 
-const slides = [
-    // Acá irían las imágenes que saquemos del back
-    "./../../../public/images/cachorrog1.jpg",
-    "./../../../public/images/cachorrog2.jpg",
-    "./../../../public/images/cachorrog3.jpg",
-    "./../../../public/images/cachorrog5.jpg",
-];
-
-const infoSlides = [
-    // Acá iría la descripción
-    "Información sobre cachorrog1",
-    "Información sobre cachorrog2",
-    "Información sobre cachorrog3",
-    "Información sobre cachorrog5",
-];
 
 export const MisAdopciones = () => {
     const { checkSession } = useLogin()
-    const [currentSlide, setCurrentSlide] = useState(0);
+
     const [listPetsAdopters, setListPetsAdopter] = useState([])
-    const handleSlideChange = (newIndex) => {
-        setCurrentSlide(newIndex);
-    };
+
 
     useEffect(() => {
         checkSession()
@@ -56,40 +38,25 @@ export const MisAdopciones = () => {
         <div className="bg-Blue min-h-[100vh] flex flex-col items-center justify-center gap-11">
             <Nav />
             <h1 className="text-4xl text-Newhite mt-12 mb-12">Las adopciones a las que aplicó</h1>
-            <div className="flex justify-center items-center">
-                <div className="w-full h-auto flex flex-wrap gap-10">
+            <div className="flex  w-[69%] justify-center items-center">
+                <div className="w-[80%]  flex flex-wrap gap-10 justify-center ">
                     {
                         listPetsAdopters.map(({pet, status}, index) => (
-                            <div className="w-72 h-72 flex flex-col border-2 border-white justify-between items-center" key={index}>
+                            <div className="w-72 h-96 flex flex-col border-2  border-orange justify-between items-center rounded-2xl pb-10 hover:scale-110 hover:rotate-6 hover:shadow-2xl hover:shadow-Newhite transition-all" key={index}>
                                 <img
                                     src={pet.imageProfile}
                                     alt={`Slide ${pet.name}`}
-                                    className="w-full h-auto object-cover"
+                                    className="w-full h-52 rounded-3xl object-cover p-4"
                                 />
-                                <p className="text-center text-Newhite text-2xl ">{pet.name}</p>
-                                <p className="text-center text-Newhite text-2xl ">Estado: {status === "IN_PROCESS" ? "En Proceso" : "Aceptado"}</p>
+                                <div className="w-[86%] h-1 rounded-full bg-Blue"></div>
+                                <div className="bg-Newhite p-5 pt-1 rounded">
+                                    <p className="text-center text-Blue text-2xl font-bold pt-5 ">{pet.name}</p>
+                                    <p className="text-center text-Blue text-2xl font-bold ">Estado: {status === "IN_PROCESS" ? "En Proceso" : "Aceptado, comuniquese con el refugio"}</p>
+                                </div>
                             </div>
                         ))
                     }
                 </div>
-                {/* <div className="max-w-xl p-10">
-                    <Carousel
-                        autoSlide={true}
-                        autoSlideInterval={10000}
-                        onSlideChange={handleSlideChange}
-                    >
-                        {listPetsAdopters.map((s, index) => (
-                            <div className="w-72 h-72 flex flex-row-reverse" key={index}>
-                                <p className="text-center text-lg text-Newhite">{s.pet.name}</p>
-                                <img
-                                    src={s.pet.imageProfile}
-                                    alt={`Slide ${s.pet.name}`}
-                                    className="w-36 h-36 object-cover rounded-full"
-                                    />
-                            </div>
-                        ))}
-                    </Carousel>
-                </div> */}
             </div>
 
         </div>
