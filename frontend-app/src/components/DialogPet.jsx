@@ -57,9 +57,9 @@ export const DialogPet = () => {
                 <div className="flex flex-row gap-10 font-medium text-white text-3xl">
                   <p><span className="text-2xl text-orange text-center">Edad:</span> {infoPet.age}</p>
                   <p><span className="text-2xl text-orange">Genero:</span> {infoPet.gender == "M" ? "Macho" : "Hembra"}</p>
-                  <p><span className="text-2xl text-orange">Tamaño:</span> {setSize(infoPet.size)}</p>
+                  <p><span className="text-2xl text-orange">Tamaño:</span> {infoPet.size}</p>
                 </div>
-              <ButtonAdd />
+              <ButtonAdd id={infoPet.id} description={infoPet.descriptionBreed}/>
               </div>
 
             </div>
