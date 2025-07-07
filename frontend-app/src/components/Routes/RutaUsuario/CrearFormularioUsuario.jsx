@@ -25,7 +25,7 @@ export const Formulario = ({ titulo, preguntas, URL }) => {
     identificationNumber: "",
     password: "",
     city: "",
-    imageProfile: null // Imagen por defecto como null
+    imageProfile: null 
   });
 
   const handleChange = (e, type) => {
